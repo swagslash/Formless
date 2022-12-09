@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
 #endregion
 
  #region player base stats
-    public readonly float BaseMaxHealth;
-    public readonly float BaseMovementSpeed;
-    public readonly float BaseRateOfFire;
-    public readonly float BaseDamagePerBullet;
-    public readonly int BaseMagazineSize;
-    public readonly float BaseTimeToReload;
+    public float BaseMaxHealth;
+    public float BaseMovementSpeed;
+    public float BaseRateOfFire;
+    public float BaseDamagePerBullet;
+    public int BaseMagazineSize;
+    public float BaseTimeToReload;
 #endregion
 
 #region shooting
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     /// Position where bullets start
     public Transform BulletOrigin;
     /// Offset added to BulletOrigin
-    public Vector3 BulletOffset;
+    public int BulletOffset;
     public float BulletSpeed;
     /// Internal control variables
     public bool HasFiringCooldown = false;
@@ -43,24 +43,26 @@ public class PlayerController : MonoBehaviour
 #endregion
 
 #region calculated player stats
-    public float MaxHealth => BaseMaxHealth * MaxHealthModifier;
-    public float MovementSpeed => BaseMovementSpeed * MovementSpeedModifier;
-    public float RateOfFire => BaseRateOfFire * RateOfFireModifier;
-    public float DamagePerBullet => BaseDamagePerBullet * DamagePerBulletModifier;
+    public float MaxHealth => BaseMaxHealth + BaseMaxHealth * MaxHealthModifier;
+    public float MovementSpeed => BaseMovementSpeed * BaseMovementSpeed * MovementSpeedModifier;
+    public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier;
+    public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
     public int MagazineSize => BaseMagazineSize + MagazineSizeModifier;
-    public float TimeToReload => BaseTimeToReload * TimeToReloadModifier;
+    public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
 #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        BulletsInMagazine = MagazineSize;
+        Health = MaxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Debug code
+        if (Input.GetKey(KeyCode.Space)) {
+            Shoot();
+        }
     }
 
     void Move() {
@@ -81,14 +83,15 @@ public class PlayerController : MonoBehaviour
             Reload();
         }
 
-        ResetWeaponFire();
+        StartCoroutine(ResetWeaponFire());
     }
 
     void FireBullet() {
         var direction = Vector3.left;// TODO: take rotation/direction from player-input
+        var offset = BulletOffset * direction;
         var bullet = Instantiate(
             BulletBlueprint,
-            BulletOrigin.position + BulletOffset,
+            BulletOrigin.position + offset,
             Quaternion.LookRotation(direction)
             );
         bullet.BulletSpeed = BulletSpeed;
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void Reload() {
         IsReloading = true;
-        ResetReload();
+        StartCoroutine(ResetReload());
     }
 
     IEnumerator ResetWeaponFire() {
@@ -106,9 +109,11 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator ResetReload (){
+        Debug.Log("Reload");
         yield return new WaitForSeconds(TimeToReload);
         IsReloading = false;
         BulletsInMagazine = MagazineSize;
+        Debug.Log("Reloaded");
     } 
 
     void ConsumeItem(Item item) {
@@ -118,5 +123,12 @@ public class PlayerController : MonoBehaviour
         DamagePerBulletModifier += item.DamagePerBulletModifier;
         MagazineSizeModifier += item.MagazineSizeModifier;
         TimeToReloadModifier += item.TimeToReloadModifier;
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(BulletOrigin.position, 0.05f);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(BulletOrigin.position + Vector3.left * BulletOffset, 0.05f);
     }
 }

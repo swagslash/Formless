@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,7 +8,10 @@ public class Bullet : MonoBehaviour
     /// Direction the bullet is flying
     public Vector3 Direction;
 
-    // Update is called once per frame
+    void Start() {
+        Destroy(gameObject, 10);
+    }
+
     void Update()
     {
         transform.position += Direction * BulletSpeed * Time.deltaTime;
