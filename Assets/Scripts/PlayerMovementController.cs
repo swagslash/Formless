@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControllerAlex : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     /// The value for the right stick
     private Vector3 lookDirection;
+
+    public Transform RotateContainer;
     
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,6 @@ public class PlayerControllerAlex : MonoBehaviour
     {
         Vector2 inputValueVector = value.Get<Vector2>();
         lookDirection = new Vector3(inputValueVector.x, 0, inputValueVector.y);
-        Debug.Log(lookDirection);
     }
 
     void Move()
@@ -40,9 +41,8 @@ public class PlayerControllerAlex : MonoBehaviour
 
     void LookAround()
     {
-        var rotateContainer = transform.Find("RotateContainer");
-        var targetDirection = Vector3.RotateTowards(rotateContainer.forward, lookDirection, 1, 0.0f);
-        rotateContainer.rotation = Quaternion.LookRotation(targetDirection);
+        var targetDirection = Vector3.RotateTowards(RotateContainer.forward, lookDirection, 1, 0.0f);
+        RotateContainer.rotation = Quaternion.LookRotation(targetDirection);
     }
     
 }

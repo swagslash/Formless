@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,11 +27,13 @@ public class PlayerController : MonoBehaviour
     /// Position where bullets start
     public Transform BulletOrigin;
     /// Offset added to BulletOrigin
-    public int BulletOffset;
+    public float BulletOffset;
     public float BulletSpeed;
+    public Transform RotateContainer;
     /// Internal control variables
     public bool HasFiringCooldown = false;
     public bool IsReloading = false;
+    public bool IsShooting = false;
 #endregion
 
 #region stat modifiers
@@ -59,14 +63,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Debug code
-        if (Input.GetKey(KeyCode.Space)) {
+        if (IsShooting)
+        {
             Shoot();
         }
     }
 
-    void Move() {
-
+    void OnShoot(InputValue value)
+    {
+        IsShooting = value.isPressed;
     }
 
     void Shoot() {
@@ -87,8 +92,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FireBullet() {
-        var rotateContainer = transform.Find("RotateContainer");
-        var direction = rotateContainer.forward;
+        var direction = RotateContainer.forward;
         var offset = BulletOffset * direction;
         var bullet = Instantiate(
             BulletBlueprint,

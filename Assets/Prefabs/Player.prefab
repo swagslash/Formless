@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2908824559003173693}
   - component: {fileID: 6567012374779938334}
   - component: {fileID: 5711977855425141631}
+  - component: {fileID: 7275645807733198453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -31,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2847617475997469267}
+  - {fileID: 3040560286885437736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0adea32d5fc44404a07c939566ce50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotateContainer: {fileID: 2847617475997469267}
 --- !u!114 &5711977855425141631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +80,71 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7275645807733198453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31056051383230351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f721174c5f5569468880f0175c11dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  BulletsInMagazine: 0
+  BaseMaxHealth: 10
+  BaseMovementSpeed: 1
+  BaseRateOfFire: 0.5
+  BaseDamagePerBullet: 1
+  BaseMagazineSize: 7
+  BaseTimeToReload: 2
+  BulletBlueprint: {fileID: 3405823594609813595, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
+    type: 3}
+  BulletOrigin: {fileID: 3040560286885437736}
+  BulletOffset: 0.7
+  BulletSpeed: 10
+  RotateContainer: {fileID: 2847617475997469267}
+  HasFiringCooldown: 0
+  IsReloading: 0
+  MaxHealthModifier: 0
+  MovementSpeedModifier: 0
+  RateOfFireModifier: 0
+  DamagePerBulletModifier: 0
+  MagazineSizeModifier: 0
+  TimeToReloadModifier: 0
+--- !u!1 &1344398203525842625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3040560286885437736}
+  m_Layer: 0
+  m_Name: BulletOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3040560286885437736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344398203525842625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2908824559003173693}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2864313541789506301
 GameObject:
   m_ObjectHideFlags: 0

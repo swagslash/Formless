@@ -854,3 +854,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc3aaaae77fd41788365ba8d4f345f9, type: 3}
+--- !u!1 &2012756642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 31056051383230351, guid: 3a8a84e762b5740e5b0389af897004ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1330280969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2012756646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012756642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f721174c5f5569468880f0175c11dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  BulletsInMagazine: 0
+  BaseMaxHealth: 0
+  BaseMovementSpeed: 0
+  BaseRateOfFire: 0
+  BaseDamagePerBullet: 0
+  BaseMagazineSize: 0
+  BaseTimeToReload: 0
+  BulletBlueprint: {fileID: 0}
+  BulletOrigin: {fileID: 0}
+  BulletOffset: 0
+  BulletSpeed: 0
+  RotateContainer: {fileID: 0}
+  HasFiringCooldown: 0
+  IsReloading: 0
+  MaxHealthModifier: 0
+  MovementSpeedModifier: 0
+  RateOfFireModifier: 0
+  DamagePerBulletModifier: 0
+  MagazineSizeModifier: 0
+  TimeToReloadModifier: 0
