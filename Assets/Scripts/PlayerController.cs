@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 #region calculated player stats
     public float MaxHealth => BaseMaxHealth + BaseMaxHealth * MaxHealthModifier;
-    public float MovementSpeed => BaseMovementSpeed * BaseMovementSpeed * MovementSpeedModifier;
+    public float MovementSpeed => BaseMovementSpeed + BaseMovementSpeed * MovementSpeedModifier;
     public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier;
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
     public int MagazineSize => BaseMagazineSize + MagazineSizeModifier;
@@ -67,6 +67,27 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+        
+        Move();
+    }
+    
+    void Move()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+
+        transform.Translate(movementDirection * (Time.deltaTime * MovementSpeed));
+    }
+
+    void OnLookAround(InputValue value)
+    {
+        Vector2 inputValueVector = value.Get<Vector2>();
+        var lookDirection = new Vector3(inputValueVector.x, 0, inputValueVector.y);
+
+        var targetDirection = Vector3.RotateTowards(RotateContainer.forward, lookDirection, 1, 0.0f);
+        RotateContainer.rotation = Quaternion.LookRotation(targetDirection);
     }
 
     void OnShoot(InputValue value)
