@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,11 +5,9 @@ public class HuntingEnemy : MonoBehaviour
 {
     private NavMeshAgent myNavMeshAgent;
     
-    public Transform target;
+    public GameObject target;
 
-    public LayerMask whatIsGround, whatIsPlayer;
-
-    public float health;
+    public LayerMask whatIsPlayer;
 
     // Patrolling
     public float wanderTimer;
@@ -29,7 +25,7 @@ public class HuntingEnemy : MonoBehaviour
 
     void Awake()
     {
-        target = GameObject.Find("Player").transform;
+        target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
     }
     
@@ -48,7 +44,9 @@ public class HuntingEnemy : MonoBehaviour
     private void AttackTarget()
     {
         var position = transform.position;
-        // transform.LookAt(new Vector3(position.x, target.position.y, target.position.z));
+        var targetPos = target.transform.position;
+        // this may clip
+        transform.LookAt(new Vector3(targetPos.x, position.y, targetPos.z));
         myNavMeshAgent.SetDestination(position);
         Debug.Log("Attack!");
     }
@@ -56,7 +54,7 @@ public class HuntingEnemy : MonoBehaviour
     private void ChasePlayer()
     {
         myNavMeshAgent.speed = 5;
-        myNavMeshAgent.SetDestination(target.position);
+        myNavMeshAgent.SetDestination(target.transform.position);
     }
 
     private void Patrol()
@@ -68,6 +66,7 @@ public class HuntingEnemy : MonoBehaviour
         var arrived = myNavMeshAgent.remainingDistance < 1f;
         var timedOut = _timer >= wanderTimer;
         
+        // TODO decide if we want to always wander after arriving?
         if (timedOut) {
             var newPos = RandomNavSphere(transform.position, wanderRange, -1);
             myNavMeshAgent.SetDestination(newPos);
