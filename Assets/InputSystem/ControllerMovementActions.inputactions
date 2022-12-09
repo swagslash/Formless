@@ -1,0 +1,34 @@
+{
+    "name": "ControllerMovementActions",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "bb9242c8-fc14-47d6-9820-e797644c8f9a",
+            "actions": [
+                {
+                    "name": "LookAround",
+                    "type": "Value",
+                    "id": "92e67b29-cf91-46dd-a34b-ec754a28ae7a",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c04a622-0876-45cf-826a-81fe8a2a386a",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookAround",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
