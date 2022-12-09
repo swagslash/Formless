@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public int BulletsInMagazine;
 #endregion
 
- #region player base stats
+#region player base stats
     public float BaseMaxHealth;
     public float BaseMovementSpeed;
     public float BaseRateOfFire;
@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void FireBullet() {
-        var direction = Vector3.left;// TODO: take rotation/direction from player-input
+        var rotateContainer = transform.Find("RotateContainer");
+        var direction = rotateContainer.forward;
         var offset = BulletOffset * direction;
         var bullet = Instantiate(
             BulletBlueprint,
