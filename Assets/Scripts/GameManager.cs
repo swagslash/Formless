@@ -72,9 +72,10 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator StartLevel() {
-        // VictoryScreenUI.HideUI();
+        CurrentLevel++;
+        VictoryScreenUI.gameObject.SetActive(false);
         CountDownUI.StartCountdown();
-        GenerateEnemies();
+        // GenerateEnemies();
 
         IsFighting = false;
         IsLevelClear = false;
@@ -91,18 +92,29 @@ public class GameManager : MonoBehaviour
         IsLevelClear = true;
         IsFighting = false;
 
+        Player.gameObject.SetActive(false);
+
         // TODO: check that distinct items are generated
         var left = GenerateRandomItem();
         var right = GenerateRandomItem();
 
         // TODO: show victory screen
-        // VictoryScreenUI.ShowUI();
-        // VictoryScreenUI.SetItems(left, right);
+        VictoryScreenUI.gameObject.SetActive(true);
+        VictoryScreenUI.SetItems(left, right);
     }
 
     Item GenerateRandomItem() {
         var index = Random.Range(0, ItemBlueprints.Count);
         return ItemBlueprints[index];
+    }
+
+    public void SelectItem(Item item) {
+        Player.MaxHealthModifier += item.MaxHealthModifier;
+        Player.MovementSpeedModifier += item.MovementSpeedModifier;
+        Player.DamagePerBulletModifier += item.DamagePerBulletModifier;
+        Player.TimeToReloadModifier += item.TimeToReloadModifier;
+        Player.RateOfFireModifier += item.RateOfFireModifier;
+        Player.MagazineSizeModifier += item.MagazineSizeModifier;
     }
 
     public void KillEnemy(GameObject enemy) {
