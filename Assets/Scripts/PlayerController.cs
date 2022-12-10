@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
     void OnLookAround(InputValue value)
     {
         Vector2 inputValueVector = value.Get<Vector2>();
+
         var lookDirection = new Vector3(inputValueVector.x, 0, inputValueVector.y);
 
         var targetDirection = Vector3.RotateTowards(RotateContainer.forward, lookDirection, 1, 0.0f);
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
             );
         bullet.BulletSpeed = BulletSpeed;
         bullet.Direction = direction;
+        bullet.Damage = DamagePerBullet;
     }
 
     void Reload() {
