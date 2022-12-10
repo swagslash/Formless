@@ -175,7 +175,6 @@ public class HuntingEnemy : MonoBehaviour
     {
         var position = transform.position;
         var targetPos = target.transform.position;
-        var targetLookPoint = new Vector3(targetPos.x, position.y, targetPos.z);
         // this may snap into place, but idgaf
         // transform.LookAt(targetLookPoint);
         myNavMeshAgent.SetDestination(position);
@@ -196,11 +195,14 @@ public class HuntingEnemy : MonoBehaviour
         _alreadyAttacked = true;
 
         var bulletOriginPosition = bulletOrigin.position;
-        var dirToTarget = (atkTarget.transform.position - bulletOriginPosition).normalized;
+        var targetLookPoint = new Vector3(atkTarget.transform.position.x, bulletOrigin.position.y, atkTarget.transform.position.z);
+        var dirToTarget = (targetLookPoint - bulletOriginPosition).normalized;
+        
+        var offset = 0.8f * dirToTarget;
 
         var bullet = Instantiate(
             bulletPrefab,
-            bulletOriginPosition,
+            bulletOriginPosition + offset,
             Quaternion.LookRotation(dirToTarget)
         );
         bullet.BulletSpeed = bulletSpeed;
