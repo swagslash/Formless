@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
 #region setup
-    public int BaseEnemyCount = 15;
+    public int BaseEnemyCount = 5;
     public float BaseEnemyCountModifier = 1.25f;
     public bool Debug_NoCooldownTimer = false;
 
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     } 
 
     void GenerateEnemies() {
-        var enemyCount = (int) (BaseEnemyCount * BaseEnemyCountModifier);
+        var enemyCount = (int) (BaseEnemyCount * Mathf.Pow(BaseEnemyCountModifier, CurrentLevel - 1));
         for (int i = 0; i < enemyCount; i++) {
             var spawnIndex = Random.Range(0, EnemySpawnPoints.Count);
             var enemySpawn = EnemySpawnPoints[spawnIndex].transform.position;
