@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
         Enemies.ForEach((enemy) => enemy.SetActive(true));
 
         IsFighting = true;
+        
+        EnemyCountUI.text = "" + Enemies.Count;
     }
 
     void LevelCleared() {
