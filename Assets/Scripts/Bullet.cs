@@ -8,8 +8,11 @@ public class Bullet : MonoBehaviour
     /// Direction the bullet is flying
     public Vector3 Direction;
 
+    private GameManager gameManager;
+
     void Start() {
         Destroy(gameObject, 10);
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -20,8 +23,13 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             // Handle bullet collision with player
+            // TODO
         } else if (other.tag == "Enemy") {
             // Handle bullet collision with enemy
+            gameManager.KillEnemy(other.gameObject);
+        } else {
+            // Collision with some wall
+            Destroy(gameObject);
         }
     }
 }

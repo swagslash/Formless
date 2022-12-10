@@ -152,9 +152,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(BulletOrigin.position, 0.05f);
         Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(BulletOrigin.position, 0.05f);
         Gizmos.DrawSphere(BulletOrigin.position + Vector3.left * BulletOffset, 0.05f);
     }
 }

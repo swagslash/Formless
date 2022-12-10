@@ -1,5 +1,9 @@
-public class Item
+using UnityEngine;
+
+public class Item : MonoBehaviour
 {
+    public Sprite Icon;
+
     /// % of max-health increae/decrease
     public float MaxHealthModifier = 0;
     /// % of movement-speed increase/decrease
