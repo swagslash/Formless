@@ -48,7 +48,6 @@ public class HuntingEnemy : MonoBehaviour
     public float health = 5;
     private EnemyStatus _enemyStatus;
 
-    public int RelativeHealth => (int) (health / BaseHealth * 100);
     private GameManager _gameManager;
 
     void Awake()
@@ -302,6 +301,6 @@ public class HuntingEnemy : MonoBehaviour
 
         Debug.Log("Damaged for " + damage);
         health -= damage;
-        _enemyStatus.SetEnemyHealth(RelativeHealth);
+        _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
     }
 }
