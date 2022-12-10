@@ -44,18 +44,24 @@ public class HuntingEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
-    public float health = 10;
+    public float BaseHealth = 5;
+    public float health = 5;
+    private EnemyStatus _enemyStatus;
+
+    public int RelativeHealth => (int) (health / BaseHealth * 100);
     private GameManager _gameManager;
 
     void Awake()
     {
         target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
+        _enemyStatus = GetComponent<EnemyStatus>();
     }
 
     void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
+        health = BaseHealth;
     }
 
     void Update()
@@ -136,15 +142,18 @@ public class HuntingEnemy : MonoBehaviour
         {
             case EnemyState.PATROL:
                 Patrol();
+                GetComponent<EnemyAlerted>().SetAlerted(false);
                 break;
             case EnemyState.CHASE:
                 ChaseLastKnownPos();
+                GetComponent<EnemyAlerted>().SetAlerted(true);
                 break;
             case EnemyState.ATTACK:
                 AttackTarget();
                 break;
             case EnemyState.AIMING:
             case EnemyState.STARTLED:
+                GetComponent<EnemyAlerted>().SetAlerted(true);
                 TurnIfNeeded();
                 break;
             default:
@@ -291,5 +300,6 @@ public class HuntingEnemy : MonoBehaviour
 
         Debug.Log("Damaged for " + damage);
         health -= damage;
+        _enemyStatus.SetEnemyHealth(RelativeHealth);
     }
 }
