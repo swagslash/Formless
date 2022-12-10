@@ -94,7 +94,7 @@ MonoBehaviour:
   BulletBlueprint: {fileID: 3405823594609813595, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
   BulletOrigin: {fileID: 3040560286885437736}
-  BulletOffset: 0.7
+  BulletOffset: 0.8
   BulletSpeed: 20
   RotateContainer: {fileID: 2847617475997469267}
   HasFiringCooldown: 0
