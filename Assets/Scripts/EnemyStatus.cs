@@ -13,14 +13,14 @@ public class EnemyStatus : MonoBehaviour
     private static Color RED = new Color(255 / 255f, 66 / 255f, 0 / 255f);
 
     public void SetEnemyHealth(int playerHealth) {
-        if (playerHealth > 75) {
+        if (playerHealth > 3) {
             HealthText.color = GREEN;
-        } else if (playerHealth > 25) {
+        } else if (playerHealth > 2) {
             HealthText.color = YELLOW;
         } else {
             HealthText.color = RED;
         }
 
-        HealthText.text = playerHealth + "%";
+        HealthText.text = playerHealth + "HP";
     }
 }

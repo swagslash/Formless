@@ -24,14 +24,14 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public void SetPlayerHealth(int playerHealth) {
-        if (playerHealth > 75) {
+        if (playerHealth > 6) {
             HealthText.color = GREEN;
-        } else if (playerHealth > 25) {
+        } else if (playerHealth > 2) {
             HealthText.color = YELLOW;
         } else {
             HealthText.color = RED;
         }
 
-        HealthText.text = playerHealth + "%";
+        HealthText.text = playerHealth + "HP";
     }
 }
