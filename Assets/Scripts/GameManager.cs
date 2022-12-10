@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     /// Blueprints for the enemies
     public List<GameObject> EnemyBlueprints;
     /// List of enemy spawn points
-    public List<Vector3> EnemySpawnPoints;
+    public List<GameObject> EnemySpawnPoints;
     /// List of all possible items
     public List<Item> ItemBlueprints;
 #endregion
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         var enemyCount = (int) (BaseEnemyCount * BaseEnemyCountModifier);
         for (int i = 0; i < enemyCount; i++) {
             var spawnIndex = Random.Range(0, EnemySpawnPoints.Count);
-            var enemySpawn = EnemySpawnPoints[spawnIndex];
+            var enemySpawn = EnemySpawnPoints[spawnIndex].transform.position;
 
             var enemyIndex = Random.Range(0, EnemyBlueprints.Count);
             var enemyBlueprint = EnemyBlueprints[enemyIndex];
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         foreach (var spawnPoint in EnemySpawnPoints) {
-            Gizmos.DrawSphere(spawnPoint, 0.05f);
+            Gizmos.DrawSphere(spawnPoint.transform.position, 0.05f);
         }
     }
 }
