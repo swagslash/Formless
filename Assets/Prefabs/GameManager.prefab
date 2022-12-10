@@ -47,15 +47,25 @@ MonoBehaviour:
   BaseEnemyCount: 5
   BaseEnemyCountModifier: 1.6
   Debug_NoCooldownTimer: 0
+  SpawnProtectionDistance: 15
   Player: {fileID: 0}
   EnemyBlueprints:
-  - {fileID: 3431540443557416460, guid: 5e186f2a922c54110985a6d11b1ba807, type: 3}
+  - {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343, type: 3}
   - {fileID: 9183319371992586446, guid: bd31b44fe46734f1eb266a7c001fcf15, type: 3}
   - {fileID: 3022572021438232751, guid: 072ac97a760274b96a746ddc632815c9, type: 3}
   EnemySpawnPoints:
-  - {x: -5, y: 1, z: 13}
-  - {x: 32, y: 1, z: 6}
-  - {x: -6, y: 1, z: 1}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ItemBlueprints:
   - {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335, type: 3}
   - {fileID: 5510928903637969140, guid: c62bd02678af49549885ffdfcc86f1e8, type: 3}
