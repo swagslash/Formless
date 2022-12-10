@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: adcb93ff20d418d41ad3cc9f8f6c9b81, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3c7aa59f7093a0546ae5025538ac7407, type: 2}
 --- !u!114 &252891303 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3631656168262409419, guid: 9cc9048e0b890654fb4877b2923e3f3a,
@@ -171,11 +171,6 @@ PrefabInstance:
       objectReference: {fileID: 252891303}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
-      propertyPath: BaseEnemyCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
-        type: 3}
       propertyPath: VictoryScreenUI
       value: 
       objectReference: {fileID: 1651106058}
@@ -188,7 +183,7 @@ PrefabInstance:
         type: 3}
       propertyPath: EnemyBlueprints.Array.data[0]
       value: 
-      objectReference: {fileID: 3745002619773489836, guid: d2a517a1e176340b78752c4ed0d931a8,
+      objectReference: {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
