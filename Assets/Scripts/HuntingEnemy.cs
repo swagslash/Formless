@@ -61,6 +61,7 @@ public class HuntingEnemy : MonoBehaviour
     void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
+        _timer = wanderTimer; // force movement of first frame
         health = BaseHealth;
     }
 
@@ -97,7 +98,7 @@ public class HuntingEnemy : MonoBehaviour
             var targetDirection = targetPos - currentPosNoHeight;
             
             var angle = Vector3.Angle(transform.forward, targetDirection);
-            if (angle < 5f)
+            if (angle < 5f || runAndGun)
             {
                 _state = EnemyState.ATTACK;
             }
