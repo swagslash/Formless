@@ -14,6 +14,11 @@ public class HuntingEnemy : MonoBehaviour
 
     private EnemyState _state;
     
+    // Startled
+    private float turnSpeed = 2f;
+    private Vector3 turnTo;
+    private Quaternion turnToQuaternion;
+    
     // Patrolling
     public float patrolSpeed;
     public float wanderTimer;
@@ -86,7 +91,17 @@ public class HuntingEnemy : MonoBehaviour
         {
             _state = EnemyState.PATROL;
         }
+
+        TurnIfNeeded();
         Act();
+    }
+
+    private void TurnIfNeeded()
+    {
+        if (turnTo != Vector3.zero)
+            turnToQuaternion = Quaternion.LookRotation (turnTo);
+ 
+        transform.rotation = Quaternion.Slerp (transform.rotation, turnToQuaternion, Time.deltaTime * 2f);
     }
 
     private void Act()
@@ -101,6 +116,9 @@ public class HuntingEnemy : MonoBehaviour
                 break;
             case EnemyState.ATTACK:
                 AttackTarget();
+                break;
+            case EnemyState.STARTLED:
+                TurnIfNeeded();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -233,8 +251,11 @@ public class HuntingEnemy : MonoBehaviour
     
     public void Damage(Vector3 direction, float damage)
     {
-        // TODO turn towards bullets
-        //_lastKnownPos = direction.normalized * 4;
+        if (_state == EnemyState.PATROL)
+        {
+            _state = EnemyState.STARTLED;
+            turnTo = direction;
+        }
         Debug.Log("Damaged for " + damage);
         health -= damage;
     }

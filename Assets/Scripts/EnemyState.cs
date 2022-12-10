@@ -2,5 +2,6 @@ public enum EnemyState
 {
     PATROL,
     CHASE,
-    ATTACK
+    ATTACK,
+    STARTLED
 }
