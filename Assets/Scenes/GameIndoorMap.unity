@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,6 +210,11 @@ PrefabInstance:
       propertyPath: Enemies.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: NextLevelCountdownUI
+      value: 
+      objectReference: {fileID: 1883425097}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: BaseEnemyCountModifier
@@ -1221,6 +1226,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1990838793}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1883425097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5403438205135175259, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 614737251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fd85a5188fcd449b77a13948547a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1907980146
 GameObject:
   m_ObjectHideFlags: 0
