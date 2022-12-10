@@ -218,5 +218,9 @@ public class PlayerController : MonoBehaviour
         Debug.LogWarning("Player damaged by " + damage);
         Health -= damage;
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
+
+        if (Health <= 0) {
+            FindObjectOfType<GameManager>().LevelFailed();
+        }
     }
 }

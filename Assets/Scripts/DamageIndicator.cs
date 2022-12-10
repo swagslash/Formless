@@ -11,7 +11,7 @@ public class DamageIndicator : MonoBehaviour
     }
 
     public void Hit() {
-        StartCoroutine(HitInternal());        
+        StartCoroutine(HitInternal());
     }
 
     IEnumerator HitInternal() {

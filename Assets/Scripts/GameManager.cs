@@ -15,13 +15,14 @@ public class GameManager : MonoBehaviour
     /// Blueprints for the enemies
     public List<GameObject> EnemyBlueprints;
     /// List of enemy spawn points
-    public List<Vector3> EnemySpawnPoints;
+    public List<GameObject> EnemySpawnPoints;
     /// List of all possible items
     public List<Item> ItemBlueprints;
 #endregion
 
 #region ui elements
     public CountDownUI CountDownUI;
+    public NextLevelCountdownUI NextLevelCountdownUI;
     public VictoryScreen VictoryScreenUI;
     public TMPro.TextMeshProUGUI EnemyCountUI;
 #endregion
@@ -45,14 +46,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     } 
 
     void GenerateEnemies() {
         var enemyCount = (int) (BaseEnemyCount * BaseEnemyCountModifier);
         for (int i = 0; i < enemyCount; i++) {
             var spawnIndex = Random.Range(0, EnemySpawnPoints.Count);
-            var enemySpawn = EnemySpawnPoints[spawnIndex];
+            var enemySpawn = EnemySpawnPoints[spawnIndex].transform.position;
 
             var enemyIndex = Random.Range(0, EnemyBlueprints.Count);
             var enemyBlueprint = EnemyBlueprints[enemyIndex];
@@ -98,9 +99,10 @@ public class GameManager : MonoBehaviour
         EnemyCountUI.text = "Enemies: " + Enemies.Count;
     }
 
-    void LevelCleared() {
-        IsLevelClear = true;
-        IsFighting = false;
+    IEnumerator LevelCleared() {
+        NextLevelCountdownUI.StartCountdown();
+
+        yield return new WaitForSeconds(5);
 
         Player.gameObject.SetActive(false);
 
@@ -108,7 +110,14 @@ public class GameManager : MonoBehaviour
 
         // TODO: show victory screen
         VictoryScreenUI.gameObject.SetActive(true);
+        VictoryScreenUI.SetWinning(true);
         VictoryScreenUI.SetItems(items[0], items[1]);
+    }
+
+    public void LevelFailed() {
+        Player.gameObject.SetActive(false);
+        VictoryScreenUI.gameObject.SetActive(true);
+        VictoryScreenUI.SetWinning(false);
     }
 
     List<Item> GenerateRandomItems() {
@@ -133,7 +142,9 @@ public class GameManager : MonoBehaviour
         Enemies.Remove(enemy);
 
         if (Enemies.Count == 0) {
-            LevelCleared();
+            IsLevelClear = true;
+            IsFighting = false;
+            StartCoroutine(LevelCleared());
         }
 
         EnemyCountUI.text = "Enemies: " + Enemies.Count;
@@ -142,7 +153,7 @@ public class GameManager : MonoBehaviour
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         foreach (var spawnPoint in EnemySpawnPoints) {
-            Gizmos.DrawSphere(spawnPoint, 0.05f);
+            Gizmos.DrawSphere(spawnPoint.transform.position, 0.05f);
         }
     }
 }

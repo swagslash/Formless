@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class VictoryScreen : MonoBehaviour
 {
     private static Color GREEN = new Color(0 / 255f, 197 / 255f, 21 / 255f);
     private static Color RED = new Color(255 / 255f, 66 / 255f, 0 / 255f);
     private static Color NEUTRAL = Color.white;
+
 
 
     public Item LeftItem;
@@ -44,6 +46,12 @@ public class VictoryScreen : MonoBehaviour
     public TMPro.TextMeshProUGUI MagazineSizeText;
 #endregion
 
+#region winning/loosing
+    public GameObject WinningContainer;
+    public GameObject LoosingContainer;
+    public bool IsWinning;
+#endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +80,12 @@ public class VictoryScreen : MonoBehaviour
     }
 
     void OnSelectItem(InputValue value) {
+        if (!IsWinning) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            return;
+        }
+        
         if (SelectedItemIndex == 0) {
             gameManager.SelectItem(LeftItem);
         } else if (SelectedItemIndex == 2) {
@@ -125,7 +139,7 @@ public class VictoryScreen : MonoBehaviour
 
     void SetModifier(TMPro.TextMeshProUGUI textElement, float value, bool isRelative, bool isPositiveBad) {
         var text = "" + (value < 0 ? "-" : "+");
-        text += (int) (isRelative ? Mathf.Abs(value) * 100 : Mathf.Abs(value));
+        text += Mathf.Ceil(isRelative ? Mathf.Abs(value) * 100 : Mathf.Abs(value));
         text += isRelative ? "%" : "";
 
         textElement.text = text;
@@ -164,5 +178,11 @@ public class VictoryScreen : MonoBehaviour
 
         RightBadImage.sprite = rightItem.BadIcon;
         RightBadValue.text = rightItem.BadValue + "";
+    }
+
+    public void SetWinning(bool isWinning) {
+        IsWinning = isWinning;
+        WinningContainer.SetActive(isWinning);
+        LoosingContainer.SetActive(!isWinning);
     }
 }
