@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
 #region ui elements
     public CountDownUI CountDownUI;
+    public NextLevelCountdownUI NextLevelCountdownUI;
     public VictoryScreen VictoryScreenUI;
     public TMPro.TextMeshProUGUI EnemyCountUI;
 #endregion
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     } 
 
     void GenerateEnemies() {
@@ -98,9 +99,10 @@ public class GameManager : MonoBehaviour
         EnemyCountUI.text = "Enemies: " + Enemies.Count;
     }
 
-    void LevelCleared() {
-        IsLevelClear = true;
-        IsFighting = false;
+    IEnumerator LevelCleared() {
+        NextLevelCountdownUI.StartCountdown();
+
+        yield return new WaitForSeconds(5);
 
         Player.gameObject.SetActive(false);
 
@@ -108,7 +110,14 @@ public class GameManager : MonoBehaviour
 
         // TODO: show victory screen
         VictoryScreenUI.gameObject.SetActive(true);
+        VictoryScreenUI.SetWinning(true);
         VictoryScreenUI.SetItems(items[0], items[1]);
+    }
+
+    public void LevelFailed() {
+        Player.gameObject.SetActive(false);
+        VictoryScreenUI.gameObject.SetActive(true);
+        VictoryScreenUI.SetWinning(false);
     }
 
     List<Item> GenerateRandomItems() {
@@ -133,7 +142,9 @@ public class GameManager : MonoBehaviour
         Enemies.Remove(enemy);
 
         if (Enemies.Count == 0) {
-            LevelCleared();
+            IsLevelClear = true;
+            IsFighting = false;
+            StartCoroutine(LevelCleared());
         }
 
         EnemyCountUI.text = "Enemies: " + Enemies.Count;

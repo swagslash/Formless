@@ -171,6 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 252891303}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: BaseEnemyCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: VictoryScreenUI
       value: 
       objectReference: {fileID: 1651106058}
@@ -179,6 +184,11 @@ PrefabInstance:
       propertyPath: Enemies.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: NextLevelCountdownUI
+      value: 
+      objectReference: {fileID: 1155325468}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: BaseEnemyCountModifier
@@ -612,6 +622,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1021659421}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1155325468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5403438205135175259, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 614737251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fd85a5188fcd449b77a13948547a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1490840003
 PrefabInstance:
   m_ObjectHideFlags: 0
