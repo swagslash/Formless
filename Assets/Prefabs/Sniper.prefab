@@ -218,12 +218,12 @@ MonoBehaviour:
   patrolSpeed: 2
   wanderTimer: 5
   wanderRange: 5
-  viewAngle: 60
+  viewAngle: 100
   chaseSpeed: 3
   bulletPrefab: {fileID: 3405823594609813595, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
   bulletOrigin: {fileID: 3745002618086204005}
-  timeBetweenAttacks: 5
+  timeBetweenAttacks: 1
   sightRange: 16.66
   attackRange: 10
   playerInSight: 0
