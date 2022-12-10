@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
+#region player
+    public Rigidbody _rigidbody;
+#endregion
+
 #region current player stats
     public float Health;
     public int BulletsInMagazine;
@@ -77,8 +81,7 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-
-        transform.Translate(movementDirection * (Time.deltaTime * MovementSpeed));
+        _rigidbody.velocity = (movementDirection * MovementSpeed);
     }
 
     void OnLookAround(InputValue value)
@@ -156,4 +159,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(BulletOrigin.position, 0.05f);
         Gizmos.DrawSphere(BulletOrigin.position + Vector3.left * BulletOffset, 0.05f);
     }
+    
 }
