@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2046793466580688032
+--- !u!1001 &5515036363068885602
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,48 +10,13 @@ PrefabInstance:
     - target: {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
       propertyPath: m_Name
-      value: Shotgunner
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: sightRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: attackRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: patrolSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: wanderRange
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: wanderTimer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
-        type: 3}
-      propertyPath: timeBetweenAttacks
-      value: 0.2
+      value: RunAndGun
       objectReference: {fileID: 0}
     - target: {fileID: 3745002619773489840, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4cd6aae87817b4660a9c190b984e13ea, type: 2}
+      objectReference: {fileID: 2100000, guid: c70fddf65f8d042b98cc4c7319eaa849, type: 2}
     - target: {fileID: 3745002619773489842, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
       propertyPath: m_RootOrder
