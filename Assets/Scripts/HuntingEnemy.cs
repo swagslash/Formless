@@ -29,7 +29,8 @@ public class HuntingEnemy : MonoBehaviour
     public Bullet bulletPrefab;
     public Transform bulletOrigin;
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public float bulletSpeed = 5;
+    private bool _alreadyAttacked;
 
     // States
     public float sightRange, attackRange;
@@ -55,7 +56,6 @@ public class HuntingEnemy : MonoBehaviour
             
             if (visibleTarget != null)
             {
-                Debug.Log("New last know pos: " + visibleTarget);
                 _lastKnownPos = visibleTarget;
             }
         }
@@ -102,12 +102,10 @@ public class HuntingEnemy : MonoBehaviour
 
     private void ChaseLastKnownPos()
     {
-        Debug.Log("Chasing");
         myNavMeshAgent.speed = chaseSpeed;
         if (_lastKnownPos.HasValue) myNavMeshAgent.SetDestination(_lastKnownPos.Value);
         if (myNavMeshAgent.remainingDistance < 1)
         {
-            Debug.Log("Reached last known pos");
             _lastKnownPos = null;
         }
     }
@@ -129,11 +127,11 @@ public class HuntingEnemy : MonoBehaviour
 
     private void Attack(GameObject atkTarget)
     {
-        if (alreadyAttacked) {
+        if (_alreadyAttacked) {
             return;
         }
 
-        alreadyAttacked = true;
+        _alreadyAttacked = true;
 
         var bulletOriginPosition = bulletOrigin.position;
         var dirToTarget = (atkTarget.transform.position - bulletOriginPosition).normalized;
@@ -143,7 +141,7 @@ public class HuntingEnemy : MonoBehaviour
             bulletOriginPosition,
             Quaternion.LookRotation(dirToTarget)
         );
-        bullet.BulletSpeed = 5;
+        bullet.BulletSpeed = bulletSpeed;
         bullet.Direction = dirToTarget;
         
         StartCoroutine(ResetAttack());
@@ -151,7 +149,7 @@ public class HuntingEnemy : MonoBehaviour
     
     IEnumerator ResetAttack() {
         yield return new WaitForSeconds(timeBetweenAttacks);
-        alreadyAttacked = false;
+        _alreadyAttacked = false;
     }
 
     private void Patrol()
@@ -187,7 +185,7 @@ public class HuntingEnemy : MonoBehaviour
         {
             if (hit.transform.name == "Player")
             {
-                Debug.Log("Player visible");
+                //Debug.Log("Player visible");
                 Debug.DrawRay(transform.position, dirToTarget * hit.distance, Color.yellow);
                 var angle = Vector3.Angle(transform.forward, dirToTarget);
                 return angle < viewAngle / 2 ? hit.transform.position : null;

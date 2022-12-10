@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     /// Direction the bullet is flying
     public Vector3 Direction;
 
+    public float Damage;
+    
     private GameManager gameManager;
 
     void Start() {
@@ -20,16 +22,25 @@ public class Bullet : MonoBehaviour
         transform.position += Direction * BulletSpeed * Time.deltaTime;
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") {
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.LogWarning("OnTriggerEnter");
+        var livingEntity = other.GetComponent<LivingEntity>();
+        if (livingEntity != null)
+        {
+            livingEntity.Damage(Damage);
+        }
+        
+        if (other.CompareTag("Player")) {
             // Handle bullet collision with player
             // TODO
-        } else if (other.tag == "Enemy") {
+        } else if (other.CompareTag("Enemy")) {
             // Handle bullet collision with enemy
-            gameManager.KillEnemy(other.gameObject);
+            // gameManager.KillEnemy(other.gameObject);
         } else {
             // Collision with some wall
             Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
