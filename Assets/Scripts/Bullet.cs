@@ -44,9 +44,8 @@ public class Bullet : MonoBehaviour
                 huntingEnemy.GetComponent<DamageIndicator>().Hit();
             }
         }
-a        else if (other.CompareTag("Bullet"))
+        else if (other.CompareTag("Bullet"))
         {
-            Debug.Log("Collision with other Bulletw");
             return;
         }
         Destroy(gameObject);
