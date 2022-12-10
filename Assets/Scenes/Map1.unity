@@ -897,7 +897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.6831841, y: 0, z: 0, w: 0.7302462}
-  m_LocalPosition: {x: 1.251502, y: 15.499998, z: -9.190456}
+  m_LocalPosition: {x: 1.251502, y: 15.499998, z: -8.190456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 15, z: -1}
+  m_FollowOffset: {x: 0, y: 15, z: 0}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2385,6 +2385,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &979312457 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 350719434260101393, guid: 3a8a84e762b5740e5b0389af897004ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1316281596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &979312460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2908824559003173693, guid: 3a8a84e762b5740e5b0389af897004ee,
@@ -3224,6 +3230,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350719434260101393, guid: 3a8a84e762b5740e5b0389af897004ee,
         type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350719434260101393, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 350719434260101393, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
@@ -3281,6 +3297,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275645807733198453, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 979312457}
+    - target: {fileID: 7275645807733198453, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: BaseMovementSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a8a84e762b5740e5b0389af897004ee, type: 3}
