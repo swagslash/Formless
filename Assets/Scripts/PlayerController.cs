@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
 #region player
-    public Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;
 #endregion
 
 #region current player stats
@@ -51,16 +51,17 @@ public class PlayerController : MonoBehaviour
 #endregion
 
 #region calculated player stats
-    public float MaxHealth => BaseMaxHealth + BaseMaxHealth * MaxHealthModifier;
+    public float MaxHealth => Mathf.Max(1, BaseMaxHealth + BaseMaxHealth * MaxHealthModifier);
     public float MovementSpeed => BaseMovementSpeed + BaseMovementSpeed * MovementSpeedModifier;
     public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier;
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
-    public int MagazineSize => BaseMagazineSize + MagazineSizeModifier;
+    public int MagazineSize => Mathf.Max(1, BaseMagazineSize + MagazineSizeModifier);
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
 #endregion
 
     void Start()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         BulletsInMagazine = MagazineSize;
         Health = MaxHealth;
     }

@@ -59,6 +59,96 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "b67e9b95-bd5c-497f-8d5a-5a79b6f441f6",
+            "actions": [
+                {
+                    "name": "SelectLeft",
+                    "type": "Value",
+                    "id": "2d833ebc-c865-4e77-bcd3-6654a752eecf",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SelectRight",
+                    "type": "Value",
+                    "id": "0ea47d81-f0be-4dfc-94f5-b223e3d10ab1",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SelectItem",
+                    "type": "Value",
+                    "id": "28f5d029-585d-46c5-a1c6-f751f96555be",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4dff87aa-a8ed-4f7a-93e2-b6d287f9a918",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98f7ee90-9d42-4899-9d44-4f42016c77c2",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d0227b7-457c-4daa-97eb-2d56665a07c3",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b314274-b588-4c7a-8081-cf36c332c3ef",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38de57df-2d73-402a-b7fa-4cde66062bef",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

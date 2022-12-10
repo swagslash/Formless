@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Sprite Icon;
-
     /// % of max-health increae/decrease
     public float MaxHealthModifier = 0;
     /// % of movement-speed increase/decrease
@@ -16,4 +14,11 @@ public class Item : MonoBehaviour
     public int MagazineSizeModifier = 0;
     /// % of time-to-reload increase/decrease
     public float TimeToReloadModifier = 0;
+
+
+    /// Used for UI
+    public string GoodValue;
+    public string BadValue;
+    public Sprite GoodIcon;
+    public Sprite BadIcon;
 }
