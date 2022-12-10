@@ -21,6 +21,7 @@ public class HuntingEnemy : MonoBehaviour
     private float _timer;
 
     // Chasing
+    public float viewAngle = 60;
     public float chaseSpeed;
     private Vector3? _lastKnownPos;
     
@@ -45,11 +46,18 @@ public class HuntingEnemy : MonoBehaviour
         var position = transform.position;
         var playerInRange = Physics.CheckSphere(position, sightRange, whatIsPlayer);
 
+        // Look for player
         if (playerInRange)
         {
             // check if we can see the player if it is in range
-            _lastKnownPos = visibleTargetPos();
-            playerInSight = _lastKnownPos != null;
+            var visibleTarget = visibleTargetPos();
+            playerInSight = visibleTarget != null;
+            
+            if (visibleTarget != null)
+            {
+                Debug.Log("New last know pos: " + visibleTarget);
+                _lastKnownPos = visibleTarget;
+            }
         }
         else
         {
@@ -62,8 +70,9 @@ public class HuntingEnemy : MonoBehaviour
         {
             _state = EnemyState.ATTACK;
         }
-        else if (playerInSight)
+        else if (playerInSight || _lastKnownPos != null)
         {
+            // Chase if we see the player or know where it was last
             _state = EnemyState.CHASE;
         }
         else
@@ -95,9 +104,10 @@ public class HuntingEnemy : MonoBehaviour
     {
         Debug.Log("Chasing");
         myNavMeshAgent.speed = chaseSpeed;
-        if (_lastKnownPos != null) myNavMeshAgent.SetDestination(_lastKnownPos.Value);
+        if (_lastKnownPos.HasValue) myNavMeshAgent.SetDestination(_lastKnownPos.Value);
         if (myNavMeshAgent.remainingDistance < 1)
         {
+            Debug.Log("Reached last known pos");
             _lastKnownPos = null;
         }
     }
@@ -106,14 +116,18 @@ public class HuntingEnemy : MonoBehaviour
     {
         var position = transform.position;
         var targetPos = target.transform.position;
+        var targetLookPoint = new Vector3(targetPos.x, position.y, targetPos.z);
         // this may snap into place, but idgaf
-        transform.LookAt(new Vector3(targetPos.x, position.y, targetPos.z));
+        transform.LookAt(targetLookPoint);
         myNavMeshAgent.SetDestination(position);
-        Debug.Log("Attack!");
+
         Attack(target);
+        _lastKnownPos = targetPos;
+        // expire timer
+        _timer = wanderTimer;
     }
 
-    private void Attack(GameObject target)
+    private void Attack(GameObject atkTarget)
     {
         if (alreadyAttacked) {
             return;
@@ -122,7 +136,7 @@ public class HuntingEnemy : MonoBehaviour
         alreadyAttacked = true;
 
         var bulletOriginPosition = bulletOrigin.position;
-        var dirToTarget = (target.transform.position - bulletOriginPosition).normalized;
+        var dirToTarget = (atkTarget.transform.position - bulletOriginPosition).normalized;
         
         var bullet = Instantiate(
             bulletPrefab,
@@ -132,11 +146,11 @@ public class HuntingEnemy : MonoBehaviour
         bullet.BulletSpeed = 5;
         bullet.Direction = dirToTarget;
         
-        StartCoroutine(ResetWeaponFire());
+        StartCoroutine(ResetAttack());
     }
     
-    IEnumerator ResetWeaponFire() {
-        yield return new WaitForSeconds(5);
+    IEnumerator ResetAttack() {
+        yield return new WaitForSeconds(timeBetweenAttacks);
         alreadyAttacked = false;
     }
 
@@ -175,7 +189,8 @@ public class HuntingEnemy : MonoBehaviour
             {
                 Debug.Log("Player visible");
                 Debug.DrawRay(transform.position, dirToTarget * hit.distance, Color.yellow);
-                return hit.transform.position;
+                var angle = Vector3.Angle(transform.forward, dirToTarget);
+                return angle < viewAngle / 2 ? hit.transform.position : null;
             }
         }
         else
@@ -195,5 +210,10 @@ public class HuntingEnemy : MonoBehaviour
         Gizmos.DrawWireSphere(position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(position, sightRange);
+        if (_lastKnownPos.HasValue)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(_lastKnownPos.Value, 2);
+        }
     }
 }
