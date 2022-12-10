@@ -209,6 +209,7 @@ public class HuntingEnemy : MonoBehaviour
         bullet.BulletSpeed = bulletSpeed;
         bullet.Damage = damagePerBullet;
         bullet.Direction = dirToTarget;
+        bullet.isOriginPlayer = false;
 
         StartCoroutine(ResetAttack());
     }

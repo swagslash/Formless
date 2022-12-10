@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
         bullet.BulletSpeed = BulletSpeed;
         bullet.Direction = direction;
         bullet.Damage = DamagePerBullet;
+        bullet.isOriginPlayer = true;
     }
 
     void Reload() {
