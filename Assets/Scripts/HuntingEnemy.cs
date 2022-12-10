@@ -231,8 +231,10 @@ public class HuntingEnemy : MonoBehaviour
         }
     }
     
-    public void Damage(float damage)
+    public void Damage(Vector3 direction, float damage)
     {
+        // TODO turn towards bullets
+        //_lastKnownPos = direction.normalized * 4;
         Debug.Log("Damaged for " + damage);
         health -= damage;
     }
