@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f721174c5f5569468880f0175c11dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   PlayerStatus: {fileID: 7648875070747766415}
   Health: 3
   BulletsInMagazine: 0
@@ -237,7 +238,6 @@ GameObject:
   - component: {fileID: 7700033406974074618}
   - component: {fileID: 7540544677173167829}
   - component: {fileID: 2708035617242876173}
-  - component: {fileID: 1122394583580298468}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -362,20 +362,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1122394583580298468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765322975206943341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8428f8ee76f587c42bb84e429ca77100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StatusText: {fileID: 0}
-  HealthText: {fileID: 0}
 --- !u!1 &2864313541789506301
 GameObject:
   m_ObjectHideFlags: 0
