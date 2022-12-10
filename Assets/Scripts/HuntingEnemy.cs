@@ -55,6 +55,7 @@ public class HuntingEnemy : MonoBehaviour
         target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         _enemyStatus = GetComponent<EnemyStatus>();
+        _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
     }
 
     void Start()
