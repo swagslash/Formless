@@ -83,11 +83,12 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
+        Player.PlayerStatus.SetCurrentBulletsInMagazine(Player.BulletsInMagazine);
         Player.gameObject.SetActive(true);
         Enemies.ForEach((enemy) => enemy.SetActive(true));
 
         IsFighting = true;
-        
+
         EnemyCountUI.text = "" + Enemies.Count;
     }
 
@@ -127,7 +128,7 @@ public class GameManager : MonoBehaviour
             LevelCleared();
         }
 
-        EnemyCountUI.text = "" + Enemies.Count;
+        EnemyCountUI.text = "Enemies: " + Enemies.Count;
     }
 
     void OnDrawGizmos() {

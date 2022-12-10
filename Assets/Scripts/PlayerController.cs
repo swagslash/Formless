@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
 #region player
     private Rigidbody _rigidbody;
+    public PlayerStatus PlayerStatus;
 #endregion
 
 #region current player stats
@@ -53,11 +54,18 @@ public class PlayerController : MonoBehaviour
 #region calculated player stats
     public float MaxHealth => Mathf.Max(1, BaseMaxHealth + BaseMaxHealth * MaxHealthModifier);
     public float MovementSpeed => BaseMovementSpeed + BaseMovementSpeed * MovementSpeedModifier;
-    public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier;
+    public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier * -1;
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
     public int MagazineSize => Mathf.Max(1, BaseMagazineSize + MagazineSizeModifier);
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
 #endregion
+
+    void OnEnable() {
+        HasFiringCooldown = false;
+        IsReloading = false;
+        IsShooting = false;
+        Debug.Log("Active player");
+    }
 
     void Start()
     {
@@ -107,8 +115,10 @@ public class PlayerController : MonoBehaviour
 
         HasFiringCooldown = true;
 
-        BulletsInMagazine--;
+        BulletsInMagazine = Mathf.Max(0, BulletsInMagazine - 1);
         FireBullet();
+
+        PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
 
         if (BulletsInMagazine == 0) {
             Reload();
@@ -145,6 +155,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(TimeToReload);
         IsReloading = false;
         BulletsInMagazine = MagazineSize;
+        PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
         Debug.Log("Reloaded");
     } 
 
