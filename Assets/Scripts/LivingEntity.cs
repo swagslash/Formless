@@ -23,7 +23,7 @@ public class LivingEntity : MonoBehaviour
         {
             if (isEnemy)
             {
-                //gameManager.KillEnemy(gameObject);
+                gameManager.KillEnemy(gameObject);
             }
             Destroy(gameObject);
         }

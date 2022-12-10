@@ -319,11 +319,11 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  patrolSpeed: 2
+  patrolSpeed: 4
   wanderTimer: 5
   wanderRange: 5
-  viewAngle: 100
-  chaseSpeed: 3
+  viewAngle: 130
+  chaseSpeed: 8
   bulletPrefab: {fileID: 2871148741277607037, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
   bulletOrigin: {fileID: 3745002618086204005}

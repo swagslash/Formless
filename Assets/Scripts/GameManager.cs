@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         CurrentLevel++;
         VictoryScreenUI.gameObject.SetActive(false);
         CountDownUI.StartCountdown();
-        // GenerateEnemies();
+        GenerateEnemies();
 
         IsFighting = false;
         IsLevelClear = false;
