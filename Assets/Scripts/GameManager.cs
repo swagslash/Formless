@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
                 enemySpawn,
                 Quaternion.identity // TODO wede: face enemy towards player
             );
+            enemy.GetComponent<HuntingEnemy>().target = Player.gameObject;
             enemy.SetActive(false);
             Enemies.Add(enemy);
         }

@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
             // Handle bullet collision with enemy
             var huntingEnemy = other.GetComponent<HuntingEnemy>();
             if (huntingEnemy != null) {
-                huntingEnemy.Damage(Damage);
+                huntingEnemy.Damage(Direction * -1, Damage);
             }
         }
         Destroy(gameObject);
