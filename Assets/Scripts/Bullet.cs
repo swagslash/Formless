@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -40,6 +41,12 @@ public class Bullet : MonoBehaviour
                 huntingEnemy.Damage(Direction * -1, Damage);
             }
         }
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
         Destroy(gameObject);
     }
 }
