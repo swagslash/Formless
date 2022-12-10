@@ -35,11 +35,18 @@ public class HuntingEnemy : MonoBehaviour
     // States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
+    
+    public float health = 10;
+    private GameManager _gameManager;
 
     void Awake()
     {
         target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
+    }
+    
+    void Start() {
+        _gameManager = FindObjectOfType<GameManager>();
     }
     
     void Update()
@@ -213,5 +220,20 @@ public class HuntingEnemy : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(_lastKnownPos.Value, 2);
         }
+    }
+    
+    public void FixedUpdate()
+    {
+        if (health < 0)
+        {
+            _gameManager.KillEnemy(gameObject);
+            Destroy(gameObject);
+        }
+    }
+    
+    public void Damage(float damage)
+    {
+        Debug.Log("Damaged for " + damage);
+        health -= damage;
     }
 }

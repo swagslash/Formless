@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,12 +8,9 @@ public class Bullet : MonoBehaviour
     public Vector3 Direction;
 
     public float Damage;
-    
-    private GameManager gameManager;
 
     void Start() {
         Destroy(gameObject, 10);
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -24,22 +20,22 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning("OnTriggerEnter");
-        var livingEntity = other.GetComponent<LivingEntity>();
-        if (livingEntity != null)
+        if (other.CompareTag("Player"))
         {
-            livingEntity.Damage(Damage);
-        }
-        
-        if (other.CompareTag("Player")) {
             // Handle bullet collision with player
-            // TODO
-        } else if (other.CompareTag("Enemy")) {
+            var playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.Damage(Damage);
+            }
+        } 
+        else if (other.CompareTag("Enemy"))
+        {
             // Handle bullet collision with enemy
-            // gameManager.KillEnemy(other.gameObject);
-        } else {
-            // Collision with some wall
-            Destroy(gameObject);
+            var huntingEnemy = other.GetComponent<HuntingEnemy>();
+            if (huntingEnemy != null) {
+                huntingEnemy.Damage(Damage);
+            }
         }
         Destroy(gameObject);
     }

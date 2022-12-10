@@ -162,5 +162,9 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(BulletOrigin.position, 0.05f);
         Gizmos.DrawSphere(BulletOrigin.position + Vector3.left * BulletOffset, 0.05f);
     }
-    
+
+    public void Damage(float damage)
+    {
+        Health -= damage;
+    }
 }
