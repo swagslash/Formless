@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float damage)
     {
+        Debug.LogWarning("Player damaged by " + damage);
         Health -= damage;
         PlayerStatus.SetPlayerHealth(RelativePlayerHealth);
     }

@@ -10,7 +10,7 @@ public class PlayerStatus : MonoBehaviour
 #endregion
 
     private static Color GREEN = new Color(0 / 255f, 197 / 255f, 21 / 255f);
-    private static Color YELLOW = new Color(230 / 255, 145 / 255, 56 / 255);
+    private static Color YELLOW = new Color(230 / 255f, 145 / 255f, 56 / 255f);
     private static Color RED = new Color(255 / 255f, 66 / 255f, 0 / 255f);
 
     public void SetCurrentBulletsInMagazine(int bulletCount) {

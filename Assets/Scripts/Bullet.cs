@@ -20,10 +20,13 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter!");
         if (other.CompareTag("Player"))
         {
             // Handle bullet collision with player
-            var playerController = other.GetComponent<PlayerController>();
+            Debug.Log("Trigger Player");
+
+            var playerController = other.GetComponentInParent<PlayerController>();
             if (playerController != null)
             {
                 playerController.Damage(Damage);
