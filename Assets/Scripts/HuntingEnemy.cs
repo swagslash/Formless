@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 
 public class HuntingEnemy : MonoBehaviour
 {
+    public GameObject CorpseBlueprint;
+    public float CorpseSpawnRate = 0.2f;
+
     private NavMeshAgent myNavMeshAgent;
 
     public GameObject target;
@@ -285,15 +288,6 @@ public class HuntingEnemy : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
-    {
-        if (health <= 0)
-        {
-            _gameManager.KillEnemy(gameObject);
-            Destroy(gameObject);
-        }
-    }
-
     public void Damage(Vector3 direction, float damage)
     {
         if (_state == EnemyState.PATROL)
@@ -305,5 +299,25 @@ public class HuntingEnemy : MonoBehaviour
         Debug.Log("Damaged for " + damage);
         health -= damage;
         _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
+
+        if (health <= 0)
+        {
+            _gameManager.KillEnemy(gameObject);
+            
+            if (Random.value < CorpseSpawnRate)
+            {
+                var corpse = Instantiate(
+                    CorpseBlueprint,
+                    gameObject.transform.position,
+                    gameObject.transform.rotation
+                );
+
+                corpse.GetComponent<Rigidbody>().AddForce(direction * -30, ForceMode.Impulse);
+            }
+
+            Destroy(gameObject);
+
+            
+        }
     }
 }

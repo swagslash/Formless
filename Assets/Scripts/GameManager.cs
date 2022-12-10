@@ -1,41 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    #region setup
 
-#region setup
-    public int BaseEnemyCount = 15;
+    public int BaseEnemyCount = 5;
     public float BaseEnemyCountModifier = 1.25f;
     public bool Debug_NoCooldownTimer = false;
     public bool Debug_Invincible = false;
 
+    public float SpawnProtectionDistance = 10;
     /// The player
     public PlayerController Player;
+
     /// Blueprints for the enemies
     public List<GameObject> EnemyBlueprints;
+
     /// List of enemy spawn points
     public List<GameObject> EnemySpawnPoints;
+
     /// List of all possible items
     public List<Item> ItemBlueprints;
-#endregion
 
-#region ui elements
+    #endregion
+
+    #region ui elements
+
     public CountDownUI CountDownUI;
     public NextLevelCountdownUI NextLevelCountdownUI;
     public VictoryScreen VictoryScreenUI;
     public TMPro.TextMeshProUGUI EnemyCountUI;
-#endregion
 
-#region state
+    #endregion
+
+    #region state
+
     public List<GameObject> Enemies = new List<GameObject>();
 
     public int CurrentLevel = 0;
 
     public bool IsFighting = false;
     public bool IsLevelClear = false;
-#endregion
+
+    #endregion
 
 
     // Start is called before the first frame update
@@ -44,20 +56,30 @@ public class GameManager : MonoBehaviour
         StartNextLevel();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Debug_Invincible)
         {
             Player.Health = 10;
         }
-    } 
+    }
 
-    void GenerateEnemies() {
-        var enemyCount = (int) (BaseEnemyCount * BaseEnemyCountModifier);
-        for (int i = 0; i < enemyCount; i++) {
-            var spawnIndex = Random.Range(0, EnemySpawnPoints.Count);
-            var enemySpawn = EnemySpawnPoints[spawnIndex].transform.position;
+    void GenerateEnemies()
+    {
+        var enemyCount = (int) (BaseEnemyCount * Mathf.Pow(BaseEnemyCountModifier, CurrentLevel - 1));
+        var eligibleSpawns = EnemySpawnPoints.FindAll(p =>
+            (p.transform.position - Player.transform.position).magnitude > SpawnProtectionDistance
+        );
+        if (!eligibleSpawns.Any())
+        {
+            // Fallback to all spawns if no spawns would be left
+            eligibleSpawns = EnemySpawnPoints;
+        }
+
+        for (var i = 0; i < enemyCount; i++)
+        {
+            var spawnIndex = Random.Range(0, eligibleSpawns.Count);
+            var enemySpawn = eligibleSpawns[spawnIndex].transform.position;
 
             var enemyIndex = Random.Range(0, EnemyBlueprints.Count);
             var enemyBlueprint = EnemyBlueprints[enemyIndex];
@@ -67,6 +89,7 @@ public class GameManager : MonoBehaviour
                 enemyBlueprint,
                 enemySpawn,
                 Quaternion.identity // TODO wede: face enemy towards player
+                // TODO andi: remove wede todo
             );
             enemy.GetComponent<HuntingEnemy>().target = Player.gameObject;
             enemy.SetActive(false);
@@ -74,11 +97,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartNextLevel() {
+    public void StartNextLevel()
+    {
         StartCoroutine(StartLevel());
     }
 
-    IEnumerator StartLevel() {
+    IEnumerator StartLevel()
+    {
         CurrentLevel++;
         VictoryScreenUI.gameObject.SetActive(false);
         CountDownUI.StartCountdown();
@@ -127,16 +152,20 @@ public class GameManager : MonoBehaviour
         VictoryScreenUI.SetWinning(false);
     }
 
-    List<Item> GenerateRandomItems() {
+    List<Item> GenerateRandomItems()
+    {
         var index1 = Random.Range(0, ItemBlueprints.Count);
         var index2 = index1;
-        while (index2 == index1) {
+        while (index2 == index1)
+        {
             index2 = Random.Range(0, ItemBlueprints.Count);
         }
+
         return new List<Item> { ItemBlueprints[index1], ItemBlueprints[index2] };
     }
 
-    public void SelectItem(Item item) {
+    public void SelectItem(Item item)
+    {
         Player.MaxHealthModifier += item.MaxHealthModifier;
         Player.MovementSpeedModifier += item.MovementSpeedModifier;
         Player.DamagePerBulletModifier += item.DamagePerBulletModifier;
@@ -145,7 +174,8 @@ public class GameManager : MonoBehaviour
         Player.MagazineSizeModifier += item.MagazineSizeModifier;
     }
 
-    public void KillEnemy(GameObject enemy) {
+    public void KillEnemy(GameObject enemy)
+    {
         Enemies.Remove(enemy);
 
         if (Enemies.Count == 0) {
@@ -157,9 +187,11 @@ public class GameManager : MonoBehaviour
         EnemyCountUI.text = "Enemies: " + Enemies.Count;
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
-        foreach (var spawnPoint in EnemySpawnPoints) {
+        foreach (var spawnPoint in EnemySpawnPoints)
+        {
             Gizmos.DrawSphere(spawnPoint.transform.position, 0.05f);
         }
     }

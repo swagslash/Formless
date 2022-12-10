@@ -453,6 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fffb30e58644a59ae8960f5a4e4268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CorpseBlueprint: {fileID: 3013594930516183022, guid: 0eb8283513dc045f686e8196a5fccde5,
+    type: 3}
+  CorpseSpawnRate: 0.15
   target: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
