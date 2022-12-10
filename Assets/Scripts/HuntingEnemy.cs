@@ -7,18 +7,20 @@ using Random = UnityEngine.Random;
 public class HuntingEnemy : MonoBehaviour
 {
     private NavMeshAgent myNavMeshAgent;
-    
+
     public GameObject target;
 
     public LayerMask whatIsPlayer;
 
+    public bool runAndGun;
+
     private EnemyState _state;
-    
+
     // Startled
     private float turnSpeed = 2f;
     private Vector3 turnTo;
     private Quaternion turnToQuaternion;
-    
+
     // Patrolling
     public float patrolSpeed;
     public float wanderTimer;
@@ -29,18 +31,19 @@ public class HuntingEnemy : MonoBehaviour
     public float viewAngle = 60;
     public float chaseSpeed;
     private Vector3? _lastKnownPos;
-    
+
     // Attacking
     public Bullet bulletPrefab;
     public Transform bulletOrigin;
     public float timeBetweenAttacks;
     public float bulletSpeed = 5;
+    public float damagePerBullet = 1;
     private bool _alreadyAttacked;
 
     // States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
-    
+
     public float health = 10;
     private GameManager _gameManager;
 
@@ -49,11 +52,12 @@ public class HuntingEnemy : MonoBehaviour
         target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
     }
-    
-    void Start() {
+
+    void Start()
+    {
         _gameManager = FindObjectOfType<GameManager>();
     }
-    
+
     void Update()
     {
         var position = transform.position;
@@ -65,7 +69,7 @@ public class HuntingEnemy : MonoBehaviour
             // check if we can see the player if it is in range
             var visibleTarget = visibleTargetPos();
             playerInSight = visibleTarget != null;
-            
+
             if (visibleTarget != null)
             {
                 _lastKnownPos = visibleTarget;
@@ -76,11 +80,26 @@ public class HuntingEnemy : MonoBehaviour
             // if not in sight range, also not "visible"
             playerInSight = false;
         }
-        
+
         playerInAttackRange = Physics.CheckSphere(position, attackRange, whatIsPlayer);
         if (playerInAttackRange && playerInSight)
         {
-            _state = EnemyState.ATTACK;
+            var currentPos = transform.position;
+            var targetPos = target.transform.position;
+
+            var currentPosNoHeight = new Vector3(currentPos.x, targetPos.y, currentPos.z);
+            var targetDirection = targetPos - currentPosNoHeight;
+            
+            var angle = Vector3.Angle(transform.forward, targetDirection);
+            if (angle < 5f)
+            {
+                _state = EnemyState.ATTACK;
+            }
+            else
+            {
+                turnTo = targetDirection;
+                _state = EnemyState.AIMING;
+            }
         }
         else if (playerInSight || _lastKnownPos != null)
         {
@@ -89,7 +108,10 @@ public class HuntingEnemy : MonoBehaviour
         }
         else
         {
-            _state = EnemyState.PATROL;
+            if (_state != EnemyState.STARTLED)
+            {
+                _state = EnemyState.PATROL;
+            }
         }
 
         TurnIfNeeded();
@@ -99,9 +121,13 @@ public class HuntingEnemy : MonoBehaviour
     private void TurnIfNeeded()
     {
         if (turnTo != Vector3.zero)
-            turnToQuaternion = Quaternion.LookRotation (turnTo);
- 
-        transform.rotation = Quaternion.Slerp (transform.rotation, turnToQuaternion, Time.deltaTime * 2f);
+            turnToQuaternion = Quaternion.LookRotation(turnTo);
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            turnToQuaternion,
+            Time.deltaTime * turnSpeed
+        );
     }
 
     private void Act()
@@ -117,6 +143,7 @@ public class HuntingEnemy : MonoBehaviour
             case EnemyState.ATTACK:
                 AttackTarget();
                 break;
+            case EnemyState.AIMING:
             case EnemyState.STARTLED:
                 TurnIfNeeded();
                 break;
@@ -141,7 +168,7 @@ public class HuntingEnemy : MonoBehaviour
         var targetPos = target.transform.position;
         var targetLookPoint = new Vector3(targetPos.x, position.y, targetPos.z);
         // this may snap into place, but idgaf
-        transform.LookAt(targetLookPoint);
+        // transform.LookAt(targetLookPoint);
         myNavMeshAgent.SetDestination(position);
 
         Attack(target);
@@ -152,7 +179,8 @@ public class HuntingEnemy : MonoBehaviour
 
     private void Attack(GameObject atkTarget)
     {
-        if (_alreadyAttacked) {
+        if (_alreadyAttacked)
+        {
             return;
         }
 
@@ -160,19 +188,21 @@ public class HuntingEnemy : MonoBehaviour
 
         var bulletOriginPosition = bulletOrigin.position;
         var dirToTarget = (atkTarget.transform.position - bulletOriginPosition).normalized;
-        
+
         var bullet = Instantiate(
             bulletPrefab,
             bulletOriginPosition,
             Quaternion.LookRotation(dirToTarget)
         );
         bullet.BulletSpeed = bulletSpeed;
+        bullet.Damage = damagePerBullet;
         bullet.Direction = dirToTarget;
-        
+
         StartCoroutine(ResetAttack());
     }
-    
-    IEnumerator ResetAttack() {
+
+    IEnumerator ResetAttack()
+    {
         yield return new WaitForSeconds(timeBetweenAttacks);
         _alreadyAttacked = false;
     }
@@ -185,20 +215,22 @@ public class HuntingEnemy : MonoBehaviour
 
         var arrived = myNavMeshAgent.remainingDistance < 1f;
         var timedOut = _timer >= wanderTimer;
-        
+
         // TODO decide if we want to always wander after arriving?
-        if (timedOut) {
+        if (timedOut)
+        {
             var newPos = RandomNavSphere(transform.position, wanderRange, -1);
             myNavMeshAgent.SetDestination(newPos);
             _timer = 0;
         }
     }
 
-    private static Vector3 RandomNavSphere(Vector3 origin, float distance, int layerMask) {
+    private static Vector3 RandomNavSphere(Vector3 origin, float distance, int layerMask)
+    {
         var randomPos = Random.insideUnitSphere * distance + origin;
 
-        NavMesh.SamplePosition (randomPos, out var navHit, distance, layerMask);
- 
+        NavMesh.SamplePosition(randomPos, out var navHit, distance, layerMask);
+
         return navHit.position;
     }
 
@@ -223,8 +255,8 @@ public class HuntingEnemy : MonoBehaviour
 
         return null;
     }
-    
-    
+
+
     /// Used for Gizmo drawing in editor
     private void OnDrawGizmosSelected()
     {
@@ -239,7 +271,7 @@ public class HuntingEnemy : MonoBehaviour
             Gizmos.DrawWireSphere(_lastKnownPos.Value, 2);
         }
     }
-    
+
     public void FixedUpdate()
     {
         if (health < 0)
@@ -248,7 +280,7 @@ public class HuntingEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     public void Damage(Vector3 direction, float damage)
     {
         if (_state == EnemyState.PATROL)
@@ -256,6 +288,7 @@ public class HuntingEnemy : MonoBehaviour
             _state = EnemyState.STARTLED;
             turnTo = direction;
         }
+
         Debug.Log("Damaged for " + damage);
         health -= damage;
     }

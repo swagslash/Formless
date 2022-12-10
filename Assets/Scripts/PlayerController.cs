@@ -65,12 +65,15 @@ public class PlayerController : MonoBehaviour
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
     public int MagazineSize => Mathf.Max(1, BaseMagazineSize + MagazineSizeModifier);
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
+    public int RelativePlayerHealth => (int) (Health / BaseMaxHealth * 100);
 #endregion
 
     void OnEnable() {
         HasFiringCooldown = false;
         IsReloading = false;
         IsShooting = false;
+        BulletsInMagazine = MagazineSize;
+        Health = MaxHealth;
         Debug.Log("Active player");
     }
 
@@ -211,6 +214,8 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float damage)
     {
+        Debug.LogWarning("Player damaged by " + damage);
         Health -= damage;
+        PlayerStatus.SetPlayerHealth(RelativePlayerHealth);
     }
 }

@@ -318,9 +318,10 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  runAndGun: 0
   patrolSpeed: 4
-  wanderTimer: 5
-  wanderRange: 5
+  wanderTimer: 3
+  wanderRange: 8
   viewAngle: 160
   chaseSpeed: 8
   bulletPrefab: {fileID: 2871148741277607037, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
@@ -328,6 +329,7 @@ MonoBehaviour:
   bulletOrigin: {fileID: 3745002618086204005}
   timeBetweenAttacks: 1
   bulletSpeed: 5
+  damagePerBullet: 1
   sightRange: 16.66
   attackRange: 10
   playerInSight: 0
