@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 3745002619773489841}
   - component: {fileID: 3745002619773489838}
   - component: {fileID: 3745002619773489839}
-  - component: {fileID: 4003097378674066297}
   - component: {fileID: 2094527442045429701}
   m_Layer: 0
   m_Name: Sniper
@@ -322,7 +321,7 @@ MonoBehaviour:
   patrolSpeed: 4
   wanderTimer: 5
   wanderRange: 5
-  viewAngle: 130
+  viewAngle: 160
   chaseSpeed: 8
   bulletPrefab: {fileID: 2871148741277607037, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
@@ -333,6 +332,7 @@ MonoBehaviour:
   attackRange: 10
   playerInSight: 0
   playerInAttackRange: 0
+  health: 10
 --- !u!195 &3745002619773489839
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -355,20 +355,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4003097378674066297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3745002619773489836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32ff781aa84886974ffad81daf3c60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  isEnemy: 1
 --- !u!54 &2094527442045429701
 Rigidbody:
   m_ObjectHideFlags: 0
