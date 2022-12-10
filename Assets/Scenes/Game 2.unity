@@ -181,6 +181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: BaseEnemyCountModifier
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: EnemyBlueprints.Array.data[0]
       value: 
       objectReference: {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343,

@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3749d7f558d1e89438206033c0f26f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseEnemyCount: 10
-  BaseEnemyCountModifier: 1.618
+  BaseEnemyCount: 5
+  BaseEnemyCountModifier: 1.3
   Debug_NoCooldownTimer: 0
   Player: {fileID: 0}
   EnemyBlueprints:
