@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+#region movement
+    public Camera MainCamera;
+    /// <summary>
+    /// Indicates if the player uses the gamepad
+    /// </summary>
+    private bool isGamepadActive = true;
+#endregion movement
 
 #region player
     private Rigidbody _rigidbody;
@@ -82,6 +89,32 @@ public class PlayerController : MonoBehaviour
         }
         
         Move();
+        RotateTowardsMouse();
+    }
+
+    void RotateTowardsMouse()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isGamepadActive = false;
+            
+            var rawInput = Input.mousePosition;
+            rawInput.z = 20;
+            var clickTarget = MainCamera.ScreenToWorldPoint(rawInput);
+
+            var lookDirection =  clickTarget - transform.position;
+            lookDirection.y = 0;
+            Debug.Log(Input.mousePosition + " " + rawInput + " " + clickTarget + " " + " " + lookDirection + " " + transform.position);
+            
+            var targetDirection = Vector3.RotateTowards(RotateContainer.forward, lookDirection, 1, 0.0f);
+            RotateContainer.rotation = Quaternion.LookRotation(targetDirection);
+        }
+        
+        if (!isGamepadActive)
+        {
+            // only set if the player uses mouse
+            IsShooting = Input.GetMouseButton(0);
+        }
     }
     
     void Move()
@@ -95,6 +128,8 @@ public class PlayerController : MonoBehaviour
 
     void OnLookAround(InputValue value)
     {
+        isGamepadActive = true;
+        
         Vector2 inputValueVector = value.Get<Vector2>();
 
         var lookDirection = new Vector3(inputValueVector.x, 0, inputValueVector.y);

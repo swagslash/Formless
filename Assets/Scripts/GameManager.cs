@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 #region setup
     public int BaseEnemyCount = 15;
     public float BaseEnemyCountModifier = 1.25f;
+    public bool Debug_NoCooldownTimer = false;
 
     /// The player
     public PlayerController Player;
@@ -81,7 +82,10 @@ public class GameManager : MonoBehaviour
         IsFighting = false;
         IsLevelClear = false;
 
-        yield return new WaitForSeconds(5);
+        if (!Debug_NoCooldownTimer)
+        {
+            yield return new WaitForSeconds(5);
+        }
 
         Player.PlayerStatus.SetCurrentBulletsInMagazine(Player.BulletsInMagazine);
         Player.gameObject.SetActive(true);
