@@ -188,7 +188,7 @@ PrefabInstance:
         type: 3}
       propertyPath: EnemyBlueprints.Array.data[0]
       value: 
-      objectReference: {fileID: 3745002619773489836, guid: b5f8e8f4b2a4c409a997bd7e487835ae,
+      objectReference: {fileID: 3745002619773489836, guid: d2a517a1e176340b78752c4ed0d931a8,
         type: 3}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
