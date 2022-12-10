@@ -119,28 +119,28 @@ public class VictoryScreen : MonoBehaviour
         }
 
         var health = gameManager.Player.MaxHealthModifier + (SelectedItem?.MaxHealthModifier ?? 0);
-        SetModifier(HealthText, health, false, false);
+        SetModifier(HealthText, health, false);
 
         var movementSpeed = gameManager.Player.MovementSpeedModifier + (SelectedItem?.MovementSpeedModifier ?? 0);
-        SetModifier(MovementSpeedText, movementSpeed, true, false);
+        SetModifier(MovementSpeedText, movementSpeed, false);
 
         var damage = gameManager.Player.DamagePerBulletModifier + (SelectedItem?.DamagePerBulletModifier ?? 0);
-        SetModifier(DamageText, damage, true, false);
+        SetModifier(DamageText, damage, false);
 
         var timeToReload = gameManager.Player.TimeToReloadModifier + (SelectedItem?.TimeToReloadModifier ?? 0);
-        SetModifier(TimeToReloadText, timeToReload, true, true);
+        SetModifier(TimeToReloadText, timeToReload, true);
 
         var rateOfFire = gameManager.Player.RateOfFireModifier + (SelectedItem?.RateOfFireModifier ?? 0);
-        SetModifier(RateOfFireText, rateOfFire, true, false);
+        SetModifier(RateOfFireText, rateOfFire, false);
 
         var magazineSize = gameManager.Player.MagazineSizeModifier + (SelectedItem?.MagazineSizeModifier ?? 0);
-        SetModifier(MagazineSizeText, magazineSize, false, false);
+        SetModifier(MagazineSizeText, magazineSize, false);
     }
 
-    void SetModifier(TMPro.TextMeshProUGUI textElement, float value, bool isRelative, bool isPositiveBad) {
+    void SetModifier(TMPro.TextMeshProUGUI textElement, float value, bool isPositiveBad) {
         var text = "" + (value < 0 ? "-" : "+");
-        text += Mathf.Ceil(isRelative ? Mathf.Abs(value) * 100 : Mathf.Abs(value));
-        text += isRelative ? "%" : "";
+        text += Mathf.Ceil(Mathf.Abs(value) * 100);
+        text += "%";
 
         textElement.text = text;
 

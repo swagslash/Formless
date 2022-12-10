@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: GoodValue
-      value: +100%
+      value: -100%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: TimeToReloadModifier
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}

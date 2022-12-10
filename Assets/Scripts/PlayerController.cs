@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -50,20 +51,20 @@ public class PlayerController : MonoBehaviour
 
 #region stat modifiers
     // Values below are calculated  when a new item is consumed
-    public int MaxHealthModifier = 0;
+    public float MaxHealthModifier = 0;
     public float MovementSpeedModifier = 0;
     public float RateOfFireModifier = 0;
     public float DamagePerBulletModifier = 0;
-    public int MagazineSizeModifier = 0;
+    public float MagazineSizeModifier = 0;
     public float TimeToReloadModifier = 0;
 #endregion
 
 #region calculated player stats
-    public int MaxHealth => Mathf.Max(1, BaseMaxHealth + MaxHealthModifier);
+    public int MaxHealth => Mathf.Max(1, (int)(BaseMaxHealth + BaseMaxHealth * MaxHealthModifier));
     public float MovementSpeed => BaseMovementSpeed + BaseMovementSpeed * MovementSpeedModifier;
     public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier * -1;
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
-    public int MagazineSize => Mathf.Max(1, BaseMagazineSize + MagazineSizeModifier);
+    public int MagazineSize => Mathf.Max(1, (int)(BaseMagazineSize + BaseMagazineSize * MagazineSizeModifier));
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
 #endregion
 

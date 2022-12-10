@@ -3,7 +3,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     /// Absolute max-health increae/decrease
-    public int MaxHealthModifier = 0;
+    public float MaxHealthModifier = 0;
     /// % of movement-speed increase/decrease
     public float MovementSpeedModifier = 0;
     /// % of rate-of-fire increase/decrease
@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     /// % of damage-per-bullet increase/decrease
     public float DamagePerBulletModifier = 0;
     /// Absolute magazine-size increase/decrease
-    public int MagazineSizeModifier = 0;
+    public float MagazineSizeModifier = 0;
     /// % of time-to-reload increase/decrease
     public float TimeToReloadModifier = 0;
 

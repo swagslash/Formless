@@ -53,17 +53,24 @@ MonoBehaviour:
   - {fileID: 9183319371992586446, guid: bd31b44fe46734f1eb266a7c001fcf15, type: 3}
   - {fileID: 3022572021438232751, guid: 072ac97a760274b96a746ddc632815c9, type: 3}
   EnemySpawnPoints:
-  - {x: -5, y: 1, z: 13}
-  - {x: 32, y: 1, z: 6}
-  - {x: -6, y: 1, z: 1}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ItemBlueprints:
-  - {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335, type: 3}
-  - {fileID: 5510928903637969140, guid: c62bd02678af49549885ffdfcc86f1e8, type: 3}
-  - {fileID: 5510928903637969140, guid: 76dea8fe75ea942c097de70e3c57be48, type: 3}
-  - {fileID: 5136298676060333130, guid: 2c07f90f9643875449aebeb556829793, type: 3}
-  - {fileID: 5510928903637969140, guid: dd6d94e031d621e4aa114827cc937777, type: 3}
-  - {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335, type: 3}
+  - {fileID: 5510928903637969140, guid: 16c5a982fc7504fd9818ca75ce6a0214, type: 3}
+  - {fileID: 5510928903637969140, guid: 7629c2d703d0e45f5a84f74a1cd60536, type: 3}
+  - {fileID: 5510928903637969140, guid: c64026e10d5dd4c8689f336df266ef3a, type: 3}
+  - {fileID: 5510928903637969140, guid: 0397c6de8d37a4668acde731985fc672, type: 3}
+  - {fileID: 5510928903637969140, guid: c03d1762fab6c455c997bfbf194fb22d, type: 3}
+  - {fileID: 5510928903637969140, guid: 532aaa540bb4a4bbca9008ac8d6a67f3, type: 3}
+  - {fileID: 5510928903637969140, guid: d3e583f57615a4c3f87f613beb753e3e, type: 3}
+  - {fileID: 5510928903637969140, guid: 0c9dcb26ae71a47159862c41268ea6ea, type: 3}
+  - {fileID: 5510928903637969140, guid: d4a7f6fbadccc4676a3313b9307d627e, type: 3}
+  - {fileID: 5510928903637969140, guid: d99b7e64d57254f25b49bae9d9e5d6f3, type: 3}
+  - {fileID: 5510928903637969140, guid: 6fff53fe71d09453b8298068c4b831ed, type: 3}
+  - {fileID: 5510928903637969140, guid: a21fed5489f064c428d8f8bede153eb6, type: 3}
   CountDownUI: {fileID: 0}
+  NextLevelCountdownUI: {fileID: 0}
   VictoryScreenUI: {fileID: 0}
   EnemyCountUI: {fileID: 0}
   Enemies: []

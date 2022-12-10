@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int BaseEnemyCount = 15;
     public float BaseEnemyCountModifier = 1.25f;
     public bool Debug_NoCooldownTimer = false;
+    public bool Debug_Invincible = false;
 
     /// The player
     public PlayerController Player;
@@ -46,7 +47,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Debug_Invincible)
+        {
+            Player.Health = 10;
+        }
     } 
 
     void GenerateEnemies() {
@@ -102,7 +106,10 @@ public class GameManager : MonoBehaviour
     IEnumerator LevelCleared() {
         NextLevelCountdownUI.StartCountdown();
 
-        yield return new WaitForSeconds(5);
+        if (!Debug_NoCooldownTimer)
+        {
+            yield return new WaitForSeconds(5);
+        }
 
         Player.gameObject.SetActive(false);
 
