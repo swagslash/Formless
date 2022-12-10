@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 
         Player.gameObject.SetActive(true);
         Enemies.ForEach((enemy) => enemy.SetActive(true));
+        Enemies.ForEach((enemy) => enemy.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force));
 
         IsFighting = true;
 
@@ -103,18 +104,20 @@ public class GameManager : MonoBehaviour
 
         Player.gameObject.SetActive(false);
 
-        // TODO: check that distinct items are generated
-        var left = GenerateRandomItem();
-        var right = GenerateRandomItem();
+        var items = GenerateRandomItems();
 
         // TODO: show victory screen
         VictoryScreenUI.gameObject.SetActive(true);
-        VictoryScreenUI.SetItems(left, right);
+        VictoryScreenUI.SetItems(items[0], items[1]);
     }
 
-    Item GenerateRandomItem() {
-        var index = Random.Range(0, ItemBlueprints.Count);
-        return ItemBlueprints[index];
+    List<Item> GenerateRandomItems() {
+        var index1 = Random.Range(0, ItemBlueprints.Count);
+        var index2 = index1;
+        while (index2 == index1) {
+            index2 = Random.Range(0, ItemBlueprints.Count);
+        }
+        return new List<Item> { ItemBlueprints[index1], ItemBlueprints[index2] };
     }
 
     public void SelectItem(Item item) {
