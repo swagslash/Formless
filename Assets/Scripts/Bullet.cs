@@ -30,6 +30,7 @@ public class Bullet : MonoBehaviour
             if (playerController != null)
             {
                 playerController.Damage(Damage);
+                playerController.GetComponentInChildren<DamageIndicator>().Hit();
             }
         } 
         else if (other.CompareTag("Enemy"))
@@ -38,6 +39,7 @@ public class Bullet : MonoBehaviour
             var huntingEnemy = other.GetComponent<HuntingEnemy>();
             if (huntingEnemy != null) {
                 huntingEnemy.Damage(Direction * -1, Damage);
+                huntingEnemy.GetComponent<DamageIndicator>().Hit();
             }
         }
         Destroy(gameObject);

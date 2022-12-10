@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 2094527442045429701}
   - component: {fileID: 5436580705063529640}
   - component: {fileID: 4199154853145630015}
+  - component: {fileID: 2821205786970834931}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Enemy
@@ -474,7 +475,6 @@ MonoBehaviour:
   playerInAttackRange: 0
   BaseHealth: 5
   health: 10
-  EnemyStatus: {fileID: 0}
 --- !u!195 &3745002619773489839
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -539,7 +539,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alert: {fileID: 859403375011886292}
-  CameraTransform: {fileID: 0}
+--- !u!114 &2821205786970834931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745002619773489836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87b46c2ea93b2340a6d4167a4287baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageMaterial: {fileID: 2100000, guid: 5b7c3d0f2693e1f4dbec1446e9325476, type: 2}
+  OriginalMaterial: {fileID: 0}
 --- !u!1 &4361698819835821312
 GameObject:
   m_ObjectHideFlags: 0

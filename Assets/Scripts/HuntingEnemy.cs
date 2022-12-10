@@ -283,7 +283,7 @@ public class HuntingEnemy : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (health < 0)
+        if (health <= 0)
         {
             _gameManager.KillEnemy(gameObject);
             Destroy(gameObject);
