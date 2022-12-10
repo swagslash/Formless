@@ -108,7 +108,7 @@ public class VictoryScreen : MonoBehaviour
 
     void SetModifier(TMPro.TextMeshProUGUI textElement, float value, bool isRelative, bool isPositiveBad) {
         var text = "" + (value < 0 ? "-" : "+");
-        text += isRelative ? Mathf.Abs(value) * 100 : Mathf.Abs(value);
+        text += (int) (isRelative ? Mathf.Abs(value) * 100 : Mathf.Abs(value));
         text += isRelative ? "%" : "";
 
         textElement.text = text;
@@ -126,7 +126,6 @@ public class VictoryScreen : MonoBehaviour
                 textElement.color = RED;
             }
         }
-        
     }
 
     public void SetItems(Item leftItem, Item rightItem) {

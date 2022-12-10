@@ -78,13 +78,13 @@ public class GameManager : MonoBehaviour
         CountDownUI.StartCountdown();
         GenerateEnemies();
 
+        Player.gameObject.SetActive(false);
+
         IsFighting = false;
         IsLevelClear = false;
 
         yield return new WaitForSeconds(5);
 
-        Player.PlayerStatus.SetCurrentBulletsInMagazine(Player.BulletsInMagazine);
-        Player.PlayerStatus.SetPlayerHealth(Player.RelativePlayerHealth);
         Player.gameObject.SetActive(true);
         Enemies.ForEach((enemy) => enemy.SetActive(true));
 
