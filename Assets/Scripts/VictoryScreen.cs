@@ -5,6 +5,7 @@ public class VictoryScreen : MonoBehaviour
 {
     private static Color GREEN = new Color(0 / 255f, 197 / 255f, 21 / 255f);
     private static Color RED = new Color(255 / 255f, 66 / 255f, 0 / 255f);
+    private static Color NEUTRAL = Color.white;
 
 
     public Item LeftItem;
@@ -52,6 +53,22 @@ public class VictoryScreen : MonoBehaviour
         // Debug code
         SetItems(LeftItem, RightItem);
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            OnSelectLeft(new InputValue());
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnSelectRight(new InputValue());
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnSelectItem(new InputValue());
+        }
     }
 
     void OnSelectItem(InputValue value) {
@@ -113,14 +130,18 @@ public class VictoryScreen : MonoBehaviour
 
         textElement.text = text;
 
-        if (isPositiveBad) {
+        if (value == 0)
+        {
+            textElement.color = NEUTRAL;
+        }
+        else if (isPositiveBad) {
             if (value > 0) {
                 textElement.color = RED;
             } else {
                 textElement.color = GREEN;
             }
         } else {
-            if (value >= 0) {
+            if (value > 0) {
                 textElement.color = GREEN;
             } else {
                 textElement.color = RED;

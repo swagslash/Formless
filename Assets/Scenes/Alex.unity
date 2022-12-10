@@ -163,6 +163,11 @@ PrefabInstance:
       objectReference: {fileID: 614737252}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: Debug_NoCooldownTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: EnemyBlueprints.Array.data[0]
       value: 
       objectReference: {fileID: 3745002619773489836, guid: b5f8e8f4b2a4c409a997bd7e487835ae,
@@ -261,6 +266,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3631656168262409418, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 3631656169414020216, guid: 9cc9048e0b890654fb4877b2923e3f3a,
         type: 3}
       propertyPath: m_Pivot.x

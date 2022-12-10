@@ -102,12 +102,11 @@ public class PlayerController : MonoBehaviour
             isGamepadActive = false;
             
             var rawInput = Input.mousePosition;
-            rawInput.z = 20;
-            var clickTarget = MainCamera.ScreenToWorldPoint(rawInput);
+            rawInput.z = 20; // abused as factor for rotation speed
+            Vector3 clickTarget = MainCamera.ScreenToWorldPoint(rawInput);
 
-            var lookDirection =  clickTarget - transform.position;
+            Vector3 lookDirection =  clickTarget - transform.position;
             lookDirection.y = 0;
-            Debug.Log(Input.mousePosition + " " + rawInput + " " + clickTarget + " " + " " + lookDirection + " " + transform.position);
             
             var targetDirection = Vector3.RotateTowards(RotateContainer.forward, lookDirection, 1, 0.0f);
             RotateContainer.rotation = Quaternion.LookRotation(targetDirection);
