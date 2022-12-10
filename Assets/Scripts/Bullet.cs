@@ -21,7 +21,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
+        
+        Debug.Log(collision.transform.position);
+        GetComponent<Collider>().enabled = false;
          var other = collision.collider;
         if (other.CompareTag("Player"))
         {
@@ -43,10 +45,6 @@ public class Bullet : MonoBehaviour
                 huntingEnemy.Damage(Direction * -1, Damage);
                 huntingEnemy.GetComponent<DamageIndicator>().Hit();
             }
-        }
-        else if (other.CompareTag("Bullet"))
-        {
-            return;
         }
         Destroy(gameObject);
     }
