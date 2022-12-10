@@ -85,7 +85,7 @@ public class VictoryScreen : MonoBehaviour
 
             return;
         }
-        
+
         if (SelectedItemIndex == 0) {
             gameManager.SelectItem(LeftItem);
         } else if (SelectedItemIndex == 2) {
@@ -96,11 +96,19 @@ public class VictoryScreen : MonoBehaviour
     }
 
     void OnSelectLeft(InputValue value) {
+        if (!IsWinning) {
+            return;
+        }
+
         SelectedItemIndex = Mathf.Max(0, SelectedItemIndex - 1);
         UpdateIndicators();
     }
 
     void OnSelectRight(InputValue value) {
+        if (!IsWinning) {
+            return;
+        }
+
         SelectedItemIndex = Mathf.Min(2, SelectedItemIndex + 1);
         UpdateIndicators();
     }
