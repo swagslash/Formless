@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -18,9 +19,10 @@ public class Bullet : MonoBehaviour
         transform.position += Direction * BulletSpeed * Time.deltaTime;
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("OnTriggerEnter!");
+        Debug.Log("Collision");
+         var other = collision.collider;
         if (other.CompareTag("Player"))
         {
             // Handle bullet collision with player
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour
             if (playerController != null)
             {
                 playerController.Damage(Damage);
+                playerController.GetComponentInChildren<DamageIndicator>().Hit();
             }
         } 
         else if (other.CompareTag("Enemy"))
@@ -38,7 +41,12 @@ public class Bullet : MonoBehaviour
             var huntingEnemy = other.GetComponent<HuntingEnemy>();
             if (huntingEnemy != null) {
                 huntingEnemy.Damage(Direction * -1, Damage);
+                huntingEnemy.GetComponent<DamageIndicator>().Hit();
             }
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            return;
         }
         Destroy(gameObject);
     }

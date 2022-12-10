@@ -48,7 +48,6 @@ public class HuntingEnemy : MonoBehaviour
     public float health = 5;
     private EnemyStatus _enemyStatus;
 
-    public int RelativeHealth => (int) (health / BaseHealth * 100);
     private GameManager _gameManager;
 
     void Awake()
@@ -175,7 +174,6 @@ public class HuntingEnemy : MonoBehaviour
     {
         var position = transform.position;
         var targetPos = target.transform.position;
-        var targetLookPoint = new Vector3(targetPos.x, position.y, targetPos.z);
         // this may snap into place, but idgaf
         // transform.LookAt(targetLookPoint);
         myNavMeshAgent.SetDestination(position);
@@ -196,11 +194,14 @@ public class HuntingEnemy : MonoBehaviour
         _alreadyAttacked = true;
 
         var bulletOriginPosition = bulletOrigin.position;
-        var dirToTarget = (atkTarget.transform.position - bulletOriginPosition).normalized;
+        var targetLookPoint = new Vector3(atkTarget.transform.position.x, bulletOrigin.position.y, atkTarget.transform.position.z);
+        var dirToTarget = (targetLookPoint - bulletOriginPosition).normalized;
+        
+        var offset = 0.8f * dirToTarget;
 
         var bullet = Instantiate(
             bulletPrefab,
-            bulletOriginPosition,
+            bulletOriginPosition + offset,
             Quaternion.LookRotation(dirToTarget)
         );
         bullet.BulletSpeed = bulletSpeed;
@@ -283,7 +284,7 @@ public class HuntingEnemy : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (health < 0)
+        if (health <= 0)
         {
             _gameManager.KillEnemy(gameObject);
             Destroy(gameObject);
@@ -300,6 +301,6 @@ public class HuntingEnemy : MonoBehaviour
 
         Debug.Log("Damaged for " + damage);
         health -= damage;
-        _enemyStatus.SetEnemyHealth(RelativeHealth);
+        _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
     }
 }

@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: BaseEnemyCount
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
@@ -272,6 +272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329696daae32cf94685cf48bf83cdfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &719465622 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6910258982787942600, guid: 4817ead5a84d421499a2ce21d854da55,
+    type: 3}
+  m_PrefabInstance: {fileID: 1990838793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &870001446
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +460,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7275645807733198453, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 719465622}
     - target: {fileID: 7275645807733198453, guid: 3a8a84e762b5740e5b0389af897004ee,
         type: 3}
       propertyPath: BulletBlueprint

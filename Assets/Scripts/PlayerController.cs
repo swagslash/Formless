@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 #endregion
 
 #region player base stats
-    public float BaseMaxHealth;
+    public int BaseMaxHealth;
     public float BaseMovementSpeed;
     public float BaseRateOfFire;
     public float BaseDamagePerBullet;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
 #region stat modifiers
     // Values below are calculated  when a new item is consumed
-    public float MaxHealthModifier = 0;
+    public int MaxHealthModifier = 0;
     public float MovementSpeedModifier = 0;
     public float RateOfFireModifier = 0;
     public float DamagePerBulletModifier = 0;
@@ -59,13 +59,12 @@ public class PlayerController : MonoBehaviour
 #endregion
 
 #region calculated player stats
-    public float MaxHealth => Mathf.Max(1, BaseMaxHealth + BaseMaxHealth * MaxHealthModifier);
+    public int MaxHealth => Mathf.Max(1, BaseMaxHealth + MaxHealthModifier);
     public float MovementSpeed => BaseMovementSpeed + BaseMovementSpeed * MovementSpeedModifier;
     public float RateOfFire => BaseRateOfFire + BaseRateOfFire * RateOfFireModifier * -1;
     public float DamagePerBullet => BaseDamagePerBullet + BaseDamagePerBullet * DamagePerBulletModifier;
     public int MagazineSize => Mathf.Max(1, BaseMagazineSize + MagazineSizeModifier);
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
-    public int RelativePlayerHealth => (int) (Health / BaseMaxHealth * 100);
 #endregion
 
     void OnEnable() {
@@ -74,6 +73,8 @@ public class PlayerController : MonoBehaviour
         IsShooting = false;
         BulletsInMagazine = MagazineSize;
         Health = MaxHealth;
+        PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
+        PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
         Debug.Log("Active player");
     }
 
@@ -215,6 +216,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.LogWarning("Player damaged by " + damage);
         Health -= damage;
-        PlayerStatus.SetPlayerHealth(RelativePlayerHealth);
+        PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
     }
 }

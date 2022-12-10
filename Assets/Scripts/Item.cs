@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    /// % of max-health increae/decrease
-    public float MaxHealthModifier = 0;
+    /// Absolute max-health increae/decrease
+    public int MaxHealthModifier = 0;
     /// % of movement-speed increase/decrease
     public float MovementSpeedModifier = 0;
     /// % of rate-of-fire increase/decrease

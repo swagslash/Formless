@@ -94,7 +94,7 @@ MonoBehaviour:
   BulletBlueprint: {fileID: 3405823594609813595, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
   BulletOrigin: {fileID: 3040560286885437736}
-  BulletOffset: 0.7
+  BulletOffset: 0.8
   BulletSpeed: 20
   RotateContainer: {fileID: 2847617475997469267}
   HasFiringCooldown: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 8099230976748824053}
   - component: {fileID: 7729131794945612244}
   - component: {fileID: 8265199844510120793}
+  - component: {fileID: 3019344362626431128}
   m_Layer: 7
   m_Name: Sphere
   m_TagString: Player
@@ -492,6 +493,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3019344362626431128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440835245009202268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87b46c2ea93b2340a6d4167a4287baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageMaterial: {fileID: 2100000, guid: 5b7c3d0f2693e1f4dbec1446e9325476, type: 2}
 --- !u!1 &7213813068553298727
 GameObject:
   m_ObjectHideFlags: 0
