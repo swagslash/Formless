@@ -1,5 +1,8 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class HuntingEnemy : MonoBehaviour
 {
@@ -9,19 +12,27 @@ public class HuntingEnemy : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
+    private EnemyState _state;
+    
     // Patrolling
+    public float patrolSpeed;
     public float wanderTimer;
     public float wanderRange;
     private float _timer;
 
+    // Chasing
+    public float chaseSpeed;
+    private Vector3? _lastKnownPos;
+    
     // Attacking
+    public Bullet bulletPrefab;
+    public Transform bulletOrigin;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
 
     // States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSight, playerInAttackRange;
 
     void Awake()
     {
@@ -31,37 +42,109 @@ public class HuntingEnemy : MonoBehaviour
     
     void Update()
     {
-        // TODO change to visibility check
         var position = transform.position;
-        playerInSightRange = Physics.CheckSphere(position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(position, attackRange, whatIsPlayer);
+        var playerInRange = Physics.CheckSphere(position, sightRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrol();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackTarget();
+        if (playerInRange)
+        {
+            // check if we can see the player if it is in range
+            _lastKnownPos = visibleTargetPos();
+            playerInSight = _lastKnownPos != null;
+        }
+        else
+        {
+            // if not in sight range, also not "visible"
+            playerInSight = false;
+        }
+        
+        playerInAttackRange = Physics.CheckSphere(position, attackRange, whatIsPlayer);
+        if (playerInAttackRange && playerInSight)
+        {
+            _state = EnemyState.ATTACK;
+        }
+        else if (playerInSight)
+        {
+            _state = EnemyState.CHASE;
+        }
+        else
+        {
+            _state = EnemyState.PATROL;
+        }
+        Act();
+    }
+
+    private void Act()
+    {
+        switch (_state)
+        {
+            case EnemyState.PATROL:
+                Patrol();
+                break;
+            case EnemyState.CHASE:
+                ChaseLastKnownPos();
+                break;
+            case EnemyState.ATTACK:
+                AttackTarget();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void ChaseLastKnownPos()
+    {
+        Debug.Log("Chasing");
+        myNavMeshAgent.speed = chaseSpeed;
+        if (_lastKnownPos != null) myNavMeshAgent.SetDestination(_lastKnownPos.Value);
+        if (myNavMeshAgent.remainingDistance < 1)
+        {
+            _lastKnownPos = null;
+        }
     }
 
     private void AttackTarget()
     {
         var position = transform.position;
         var targetPos = target.transform.position;
-        // this may clip
+        // this may snap into place, but idgaf
         transform.LookAt(new Vector3(targetPos.x, position.y, targetPos.z));
         myNavMeshAgent.SetDestination(position);
         Debug.Log("Attack!");
+        Attack(target);
     }
 
-    private void ChasePlayer()
+    private void Attack(GameObject target)
     {
-        myNavMeshAgent.speed = 5;
-        myNavMeshAgent.SetDestination(target.transform.position);
+        if (alreadyAttacked) {
+            return;
+        }
+
+        alreadyAttacked = true;
+
+        var bulletOriginPosition = bulletOrigin.position;
+        var dirToTarget = (target.transform.position - bulletOriginPosition).normalized;
+        
+        var bullet = Instantiate(
+            bulletPrefab,
+            bulletOriginPosition,
+            Quaternion.LookRotation(dirToTarget)
+        );
+        bullet.BulletSpeed = 5;
+        bullet.Direction = dirToTarget;
+        
+        StartCoroutine(ResetWeaponFire());
+    }
+    
+    IEnumerator ResetWeaponFire() {
+        yield return new WaitForSeconds(5);
+        alreadyAttacked = false;
     }
 
     private void Patrol()
     {
         _timer += Time.deltaTime;
 
-        myNavMeshAgent.speed = 3;
+        myNavMeshAgent.speed = patrolSpeed;
 
         var arrived = myNavMeshAgent.remainingDistance < 1f;
         var timedOut = _timer >= wanderTimer;
@@ -80,6 +163,27 @@ public class HuntingEnemy : MonoBehaviour
         NavMesh.SamplePosition (randomPos, out var navHit, distance, layerMask);
  
         return navHit.position;
+    }
+
+    private Vector3? visibleTargetPos()
+    {
+        var dirToTarget = (target.transform.position - transform.position).normalized;
+        // Does the ray intersect any objects?
+        if (Physics.Raycast(transform.position, dirToTarget, out var hit, sightRange))
+        {
+            if (hit.transform.name == "Player")
+            {
+                Debug.Log("Player visible");
+                Debug.DrawRay(transform.position, dirToTarget * hit.distance, Color.yellow);
+                return hit.transform.position;
+            }
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, dirToTarget * 1000, Color.white);
+        }
+
+        return null;
     }
     
     
