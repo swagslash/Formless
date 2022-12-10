@@ -10,7 +10,10 @@ public class Bullet : MonoBehaviour
 
     public float Damage;
 
+    public bool isOriginPlayer;
+
     void Start() {
+        
         Destroy(gameObject, 10);
     }
 
@@ -25,7 +28,7 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision.transform.position);
         GetComponent<Collider>().enabled = false;
          var other = collision.collider;
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isOriginPlayer)
         {
             // Handle bullet collision with player
             Debug.Log("Trigger Player");
@@ -46,6 +49,15 @@ public class Bullet : MonoBehaviour
                 huntingEnemy.GetComponent<DamageIndicator>().Hit();
             }
         }
-        Destroy(gameObject);
+
+        if (other.CompareTag("Player") && isOriginPlayer)
+        {
+            Debug.Log("Player hit by its on Bullet");
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
