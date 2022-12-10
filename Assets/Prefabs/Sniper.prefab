@@ -467,7 +467,7 @@ MonoBehaviour:
     type: 3}
   bulletOrigin: {fileID: 3745002618086204005}
   timeBetweenAttacks: 1
-  bulletSpeed: 5
+  bulletSpeed: 13
   damagePerBullet: 1
   sightRange: 16.66
   attackRange: 10

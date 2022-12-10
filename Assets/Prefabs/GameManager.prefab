@@ -44,18 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3749d7f558d1e89438206033c0f26f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseEnemyCount: 15
-  BaseEnemyCountModifier: 1.25
+  BaseEnemyCount: 10
+  BaseEnemyCountModifier: 1.618
+  Debug_NoCooldownTimer: 0
   Player: {fileID: 0}
   EnemyBlueprints:
-  - {fileID: 7561520446254336674, guid: cc6a4fc05df6142c88768f4f0978e1d6, type: 3}
+  - {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343, type: 3}
   EnemySpawnPoints:
   - {x: 2, y: 1, z: 2}
   - {x: -2, y: 1, z: 2}
   - {x: 1, y: 1, z: -3}
   ItemBlueprints:
-  - {fileID: 5510928903637969140, guid: dd6d94e031d621e4aa114827cc937777, type: 3}
+  - {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335, type: 3}
+  - {fileID: 5510928903637969140, guid: c62bd02678af49549885ffdfcc86f1e8, type: 3}
+  - {fileID: 5510928903637969140, guid: 76dea8fe75ea942c097de70e3c57be48, type: 3}
   - {fileID: 5136298676060333130, guid: 2c07f90f9643875449aebeb556829793, type: 3}
+  - {fileID: 5510928903637969140, guid: dd6d94e031d621e4aa114827cc937777, type: 3}
+  - {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335, type: 3}
   CountDownUI: {fileID: 0}
   VictoryScreenUI: {fileID: 0}
   EnemyCountUI: {fileID: 0}

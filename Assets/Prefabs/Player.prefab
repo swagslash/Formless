@@ -83,19 +83,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   PlayerStatus: {fileID: 7648875070747766415}
-  Health: 3
+  Health: 0
   BulletsInMagazine: 0
   BaseMaxHealth: 10
-  BaseMovementSpeed: 10
-  BaseRateOfFire: 0.1
+  BaseMovementSpeed: 6
+  BaseRateOfFire: 0.2
   BaseDamagePerBullet: 1
-  BaseMagazineSize: 20
-  BaseTimeToReload: 1
+  BaseMagazineSize: 10
+  BaseTimeToReload: 3
   BulletBlueprint: {fileID: 3405823594609813595, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
     type: 3}
   BulletOrigin: {fileID: 3040560286885437736}
   BulletOffset: 0.8
-  BulletSpeed: 20
+  BulletSpeed: 15
   RotateContainer: {fileID: 2847617475997469267}
   HasFiringCooldown: 0
   IsReloading: 0
