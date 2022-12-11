@@ -47,8 +47,8 @@ public class HuntingEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
-    public float BaseHealth = 5;
-    internal float health = 5;
+    public float BaseHealth;
+    internal float health;
     private EnemyStatus _enemyStatus;
 
     private GameManager _gameManager;

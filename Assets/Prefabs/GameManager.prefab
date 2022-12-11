@@ -52,7 +52,7 @@ MonoBehaviour:
   SpawnProtectionDistance: 15
   Player: {fileID: 0}
   EnemyBlueprints:
-  - {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343, type: 3}
+  - {fileID: 3431540443557416460, guid: 5e186f2a922c54110985a6d11b1ba807, type: 3}
   - {fileID: 9183319371992586446, guid: bd31b44fe46734f1eb266a7c001fcf15, type: 3}
   - {fileID: 3022572021438232751, guid: 072ac97a760274b96a746ddc632815c9, type: 3}
   EnemySpawnPoints:
