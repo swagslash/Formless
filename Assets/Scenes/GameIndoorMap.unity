@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,6 +202,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1973474898}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: WaveUI
+      value: 
+      objectReference: {fileID: 2140973064}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: ammobar
@@ -1477,6 +1482,18 @@ PrefabInstance:
       objectReference: {fileID: 1021659422}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4817ead5a84d421499a2ce21d854da55, type: 3}
+--- !u!114 &2140973064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4538451250316398815, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 614737251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6010990800530383675
 PrefabInstance:
   m_ObjectHideFlags: 0
