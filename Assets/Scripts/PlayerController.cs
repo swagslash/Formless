@@ -82,8 +82,11 @@ public SoundManager soundManager;
         Health = MaxHealth;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
-        FindObjectOfType<GameManager>().UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
-        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
+        var manager = FindObjectOfType<GameManager>();
+        if (manager != null) {
+            manager.UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
+            manager.UpdateAmmo(BulletsInMagazine, MagazineSize);
+        }
         Debug.Log("Active player");
     }
 
