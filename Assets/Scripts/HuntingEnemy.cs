@@ -19,6 +19,8 @@ public class HuntingEnemy : MonoBehaviour
 
     private EnemyState _state;
 
+    public SoundManager soundManager;
+
     // Startled
     private float turnSpeed = 2f;
     private Vector3 turnTo;
@@ -206,6 +208,7 @@ public class HuntingEnemy : MonoBehaviour
             bulletOriginPosition + offset,
             Quaternion.LookRotation(dirToTarget)
         );
+        soundManager.PlayShoot();
         bullet.BulletSpeed = bulletSpeed;
         bullet.Damage = damagePerBullet;
         bullet.Direction = dirToTarget;
