@@ -68,6 +68,12 @@ public class PlayerController : MonoBehaviour
     public float TimeToReload => BaseTimeToReload + BaseTimeToReload * TimeToReloadModifier;
 #endregion
 
+#region Sound
+
+public SoundManager soundManager;
+
+#endregion
+
     void OnEnable() {
         HasFiringCooldown = false;
         IsReloading = false;
@@ -156,6 +162,7 @@ public class PlayerController : MonoBehaviour
         HasFiringCooldown = true;
 
         BulletsInMagazine = Mathf.Max(0, BulletsInMagazine - 1);
+        soundManager.PlayShoot();
         FireBullet();
 
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
@@ -197,6 +204,7 @@ public class PlayerController : MonoBehaviour
         IsReloading = false;
         BulletsInMagazine = MagazineSize;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
+        soundManager.PlayReloaded();
         Debug.Log("Reloaded");
     } 
 
