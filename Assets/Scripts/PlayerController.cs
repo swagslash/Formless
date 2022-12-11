@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         Health = MaxHealth;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
+        FindObjectOfType<GameManager>().UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
         Debug.Log("Active player");
     }
 
@@ -219,6 +220,7 @@ public class PlayerController : MonoBehaviour
         Debug.LogWarning("Player damaged by " + damage);
         Health -= damage;
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
+        FindObjectOfType<GameManager>().UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
 
         if (Health <= 0) {
             FindObjectOfType<GameManager>().LevelFailed();

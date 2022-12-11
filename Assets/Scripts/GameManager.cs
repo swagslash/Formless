@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
     public NextLevelCountdownUI NextLevelCountdownUI;
     public VictoryScreen VictoryScreenUI;
     public TMPro.TextMeshProUGUI EnemyCountUI;
-
+    public HealthbarUI healthbar;
+    
     #endregion
 
     #region state
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentLevel++;
         VictoryScreenUI.gameObject.SetActive(false);
+        healthbar.gameObject.SetActive(true);
         CountDownUI.StartCountdown();
         GenerateEnemies();
 
@@ -132,6 +134,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LevelCleared() {
         NextLevelCountdownUI.StartCountdown();
+        healthbar.gameObject.SetActive(false);
 
         if (!Debug_NoCooldownTimer)
         {
@@ -196,5 +199,11 @@ public class GameManager : MonoBehaviour
         {
             Gizmos.DrawSphere(spawnPoint.transform.position, 0.05f);
         }
+    }
+
+    public void UpdateHealth(int health, int maxHealth)
+    {
+        healthbar.CurrentHealth = health;
+        healthbar.MaxHealth = maxHealth;
     }
 }
