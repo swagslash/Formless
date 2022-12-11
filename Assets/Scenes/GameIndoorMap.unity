@@ -135,6 +135,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &276349240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2822003402283152466, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 614737251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b303a9b5a34281b3de3abd8c30d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &309957522 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3631656167789743192, guid: 9cc9048e0b890654fb4877b2923e3f3a,
@@ -190,6 +202,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1973474898}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 276349240}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: CountDownUI
@@ -415,6 +432,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1744022161, guid: 9cc9048e0b890654fb4877b2923e3f3a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744022161, guid: 9cc9048e0b890654fb4877b2923e3f3a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3631656169414020216, guid: 9cc9048e0b890654fb4877b2923e3f3a,
         type: 3}
       propertyPath: m_Pivot.x

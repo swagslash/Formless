@@ -85,6 +85,7 @@ MonoBehaviour:
   NextLevelCountdownUI: {fileID: 0}
   VictoryScreenUI: {fileID: 0}
   EnemyCountUI: {fileID: 0}
+  healthbar: {fileID: 0}
   Enemies: []
   CurrentLevel: 0
   IsFighting: 0
