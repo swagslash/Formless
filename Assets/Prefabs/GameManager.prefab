@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3749d7f558d1e89438206033c0f26f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseEnemyCount: 5
+  PlayerSpawn: {x: -1.5, y: 0.5, z: -6.5}
+  BaseEnemyCount: 3
   BaseEnemyCountModifier: 1.6
   Debug_NoCooldownTimer: 0
+  Debug_Invincible: 0
   SpawnProtectionDistance: 15
   Player: {fileID: 0}
   EnemyBlueprints:
