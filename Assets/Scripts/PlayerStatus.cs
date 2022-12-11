@@ -13,8 +13,8 @@ public class PlayerStatus : MonoBehaviour
     private static Color YELLOW = new Color(230 / 255f, 145 / 255f, 56 / 255f);
     private static Color RED = new Color(255 / 255f, 66 / 255f, 0 / 255f);
 
-    public void SetCurrentBulletsInMagazine(int bulletCount) {
-        if (bulletCount == 0) {
+    public void SetCurrentBulletsInMagazine(int bulletCount, bool manualReload = false) {
+        if (bulletCount == 0 || manualReload) {
             StatusText.text = "Reloading";
         } else if (bulletCount >= 10) {
             StatusText.text = bulletCount + "x";

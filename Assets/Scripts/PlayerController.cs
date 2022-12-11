@@ -96,7 +96,9 @@ public class PlayerController : MonoBehaviour
         }
         
         Move();
+        
         RotateTowardsMouse();
+        ManualReloadMouse();
     }
 
     void RotateTowardsMouse()
@@ -132,6 +134,28 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = (movementDirection * MovementSpeed);
     }
 
+    void ManualReloadMouse()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
+        {
+            isGamepadActive = false;
+            Reload();
+            // set to display "reloading" text
+            PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine, true); 
+        }
+    }
+
+    void OnReload(InputValue value)
+    {
+        isGamepadActive = true;
+        if (value.isPressed && !IsReloading)
+        {
+            Reload();
+            // set to display "reloading" text
+            PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine, true); 
+        }
+    }
+    
     void OnLookAround(InputValue value)
     {
         isGamepadActive = true;
@@ -146,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
+        isGamepadActive = true;
         IsShooting = value.isPressed;
     }
 
