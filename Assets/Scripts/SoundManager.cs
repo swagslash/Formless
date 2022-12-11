@@ -6,6 +6,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource soundFxSource;
+    public AudioSource soundFxSourceReload;
     
     public AudioClip ShootingClip;
 
@@ -24,8 +25,8 @@ public class SoundManager : MonoBehaviour
 
    public void PlayReloaded()
     {
-        soundFxSource.clip = ReloadingClip;
-        soundFxSource.Play();
+        soundFxSourceReload.clip = ReloadingClip;
+        soundFxSourceReload.Play();
     }
 
     public void PlayShoot()

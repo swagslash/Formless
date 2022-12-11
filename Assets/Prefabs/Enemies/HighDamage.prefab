@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 986165401508372891, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: ShootingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c261645a4e920d40a0970bd70de3ee8, type: 3}
     - target: {fileID: 3745002619773489836, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
       propertyPath: m_Name
