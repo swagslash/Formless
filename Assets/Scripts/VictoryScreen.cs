@@ -92,6 +92,7 @@ public class VictoryScreen : MonoBehaviour
             gameManager.SelectItem(RightItem);
         }
 
+        resetIndicators();
         gameManager.StartNextLevel();
     }
 
@@ -192,5 +193,13 @@ public class VictoryScreen : MonoBehaviour
         IsWinning = isWinning;
         WinningContainer.SetActive(isWinning);
         LoosingContainer.SetActive(!isWinning);
+    }
+
+    public void resetIndicators()
+    {
+        SelectedItemIndex = 1;
+        LeftIndicator.SetActive(false);
+        MiddleIndicator.SetActive(true);
+        RightIndicator.SetActive(false);
     }
 }
