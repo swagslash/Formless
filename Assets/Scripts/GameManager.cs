@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -210,6 +212,23 @@ public class GameManager : MonoBehaviour
     {
         healthbar.CurrentHealth = health;
         healthbar.MaxHealth = maxHealth;
+
+        var volume = FindObjectOfType<Volume>();
+        if (volume != null) {
+            var healthPercent = 1 - (health / (float) maxHealth);
+
+            FilmGrain grain;
+            volume.profile.TryGet<FilmGrain>(out grain);
+            if (grain != null) {
+                grain.intensity.value = healthPercent;
+            }
+
+            ChromaticAberration cAbbr;
+            volume.profile.TryGet<ChromaticAberration>(out cAbbr);
+            if (cAbbr != null) {
+                cAbbr.intensity.value = healthPercent;
+            }
+        }
     }
     
     public void UpdateAmmo(int ammo, int maxAmmo)
