@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4245618339065404285, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: m_Name
-      value: Health-Reload
+      value: RoF-Reload
       objectReference: {fileID: 0}
     - target: {fileID: 7157306093650351413, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -71,43 +71,43 @@ PrefabInstance:
         type: 3}
       propertyPath: BadIcon
       value: 
-      objectReference: {fileID: 21300000, guid: 2509fff61b6cb964a920a93cc6881a74,
+      objectReference: {fileID: 21300000, guid: 8db314480b835e64ba6c5cb375100c31,
         type: 3}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: BadValue
-      value: +100%
+      value: -10%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: GoodIcon
       value: 
-      objectReference: {fileID: 21300000, guid: 97375e7756b45c045bcf22eb0a1ddb28,
+      objectReference: {fileID: 21300000, guid: c6eb13364a912244287df1833b8d987c,
         type: 3}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: GoodValue
-      value: +50%
+      value: +20%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: MaxHealthModifier
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: RateOfFireModifier
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: MagazineSizeModifier
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: TimeToReloadModifier
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}

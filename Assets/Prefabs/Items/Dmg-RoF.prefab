@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: BadValue
-      value: -70%
+      value: -7%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: GoodValue
-      value: +100%
+      value: +10%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: RateOfFireModifier
-      value: -0.7
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -117,7 +117,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: DamagePerBulletModifier
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6, type: 3}
