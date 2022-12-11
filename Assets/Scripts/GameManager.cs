@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public NextLevelCountdownUI NextLevelCountdownUI;
     public VictoryScreen VictoryScreenUI;
     public TMPro.TextMeshProUGUI EnemyCountUI;
+    public TMPro.TextMeshProUGUI WaveUI;
     public HealthbarUI healthbar;
     public HealthbarUI ammobar;
     
@@ -114,6 +115,9 @@ public class GameManager : MonoBehaviour
 
         CountDownUI.StartCountdown();
         GenerateEnemies();
+        
+        WaveUI.text = "Wave: " + CurrentLevel;
+        EnemyCountUI.text = "Enemies: " + Enemies.Count;
 
         Player.gameObject.SetActive(false);
 
@@ -134,8 +138,6 @@ public class GameManager : MonoBehaviour
         Enemies.ForEach((enemy) => enemy.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force));
 
         IsFighting = true;
-
-        EnemyCountUI.text = "Enemies: " + Enemies.Count;
     }
 
     IEnumerator LevelCleared() {
