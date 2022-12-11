@@ -4,36 +4,19 @@ using UnityEngine.UI;
 
 public class HealthbarUI : MonoBehaviour
 {
-    private int currentHealth = 0;
-    private int maxHealth = 0;
 
-    private Slider slider;
-    private TextMeshProUGUI text;
-
-    public void Awake()
+    public void SetHealth(int currentHealth, int maxHealth)
     {
-        slider = GetComponent<Slider>();
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
+        var slider = GetComponent<Slider>();
+        var text = GetComponentInChildren<TextMeshProUGUI>();
 
-    public int CurrentHealth
-    {
-        get => currentHealth;
-        set { currentHealth = value; UpdateUI(); }
-    }
+        if (slider != null && text != null)
+        {
+            slider.maxValue = maxHealth;
+            slider.minValue = 0;
+            slider.value = currentHealth;
 
-    public int MaxHealth
-    {
-        get => maxHealth;
-        set { maxHealth = value; UpdateUI(); }
-    }
-
-    public void UpdateUI()
-    {
-        slider.maxValue = maxHealth;
-        slider.minValue = 0;
-        slider.value = currentHealth;
-
-        text.text = currentHealth + " / " + maxHealth;
+            text.text = currentHealth + " / " + maxHealth;
+        }
     }
 }

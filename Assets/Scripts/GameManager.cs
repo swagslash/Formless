@@ -212,8 +212,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int health, int maxHealth)
     {
-        healthbar.CurrentHealth = health;
-        healthbar.MaxHealth = maxHealth;
+        healthbar.SetHealth(health, maxHealth);
 
         var volume = FindObjectOfType<Volume>();
         if (volume != null) {
@@ -235,8 +234,7 @@ public class GameManager : MonoBehaviour
     
     public void UpdateAmmo(int ammo, int maxAmmo)
     {
-        ammobar.CurrentHealth = ammo;
-        ammobar.MaxHealth = maxAmmo;
+        ammobar.SetHealth(ammo, maxAmmo);
     }
 
     public void SetReloading()
