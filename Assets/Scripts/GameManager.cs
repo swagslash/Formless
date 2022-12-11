@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     #region setup
 
+    public Vector3 PlayerSpawn = new Vector3(-1.5f, 0.5f, -6.5f);
     public int BaseEnemyCount = 5;
     public float BaseEnemyCountModifier = 1.25f;
     public bool Debug_NoCooldownTimer = false;
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
         }
 
         Player.gameObject.SetActive(true);
+        Player.transform.position = PlayerSpawn;
         Enemies.ForEach((enemy) => enemy.SetActive(true));
         Enemies.ForEach((enemy) => enemy.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force));
 
