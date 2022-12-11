@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
         FindObjectOfType<GameManager>().UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         Debug.Log("Active player");
     }
 
@@ -158,10 +159,12 @@ public class PlayerController : MonoBehaviour
         BulletsInMagazine = Mathf.Max(0, BulletsInMagazine - 1);
         FireBullet();
 
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
 
         if (BulletsInMagazine == 0) {
             Reload();
+            FindObjectOfType<GameManager>().SetReloading();
         }
 
         StartCoroutine(ResetWeaponFire());
@@ -197,6 +200,7 @@ public class PlayerController : MonoBehaviour
         IsReloading = false;
         BulletsInMagazine = MagazineSize;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         Debug.Log("Reloaded");
     } 
 

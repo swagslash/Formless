@@ -14,6 +14,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
+      propertyPath: runAndGun
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: BaseHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
       propertyPath: sightRange
       value: 13
       objectReference: {fileID: 0}
