@@ -14,13 +14,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
+      propertyPath: viewAngle
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
       propertyPath: chaseSpeed
-      value: 6
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: sightRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: attackRange
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}
       propertyPath: wanderRange
-      value: 6
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: damagePerBullet
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745002619773489838, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3745002619773489842, guid: c0ddc8bbcf3b923418b5d044e1fc6343,
         type: 3}

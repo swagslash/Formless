@@ -83,6 +83,7 @@ public SoundManager soundManager;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
         PlayerStatus.SetPlayerHealth(Mathf.CeilToInt(Health));
         FindObjectOfType<GameManager>().UpdateHealth(Mathf.CeilToInt(Health), MaxHealth);
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         Debug.Log("Active player");
     }
 
@@ -101,7 +102,9 @@ public SoundManager soundManager;
         }
         
         Move();
+        
         RotateTowardsMouse();
+        ManualReloadMouse();
     }
 
     void RotateTowardsMouse()
@@ -137,6 +140,28 @@ public SoundManager soundManager;
         _rigidbody.velocity = (movementDirection * MovementSpeed);
     }
 
+    void ManualReloadMouse()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
+        {
+            isGamepadActive = false;
+            Reload();
+            // set to display "reloading" text
+            PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine, true); 
+        }
+    }
+
+    void OnReload(InputValue value)
+    {
+        isGamepadActive = true;
+        if (value.isPressed && !IsReloading)
+        {
+            Reload();
+            // set to display "reloading" text
+            PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine, true); 
+        }
+    }
+    
     void OnLookAround(InputValue value)
     {
         isGamepadActive = true;
@@ -151,6 +176,7 @@ public SoundManager soundManager;
 
     void OnShoot(InputValue value)
     {
+        isGamepadActive = true;
         IsShooting = value.isPressed;
     }
 
@@ -165,10 +191,12 @@ public SoundManager soundManager;
         soundManager.PlayShoot();
         FireBullet();
 
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
 
         if (BulletsInMagazine == 0) {
             Reload();
+            FindObjectOfType<GameManager>().SetReloading();
         }
 
         StartCoroutine(ResetWeaponFire());
@@ -204,6 +232,7 @@ public SoundManager soundManager;
         IsReloading = false;
         BulletsInMagazine = MagazineSize;
         PlayerStatus.SetCurrentBulletsInMagazine(BulletsInMagazine);
+        FindObjectOfType<GameManager>().UpdateAmmo(BulletsInMagazine, MagazineSize);
         soundManager.PlayReloaded();
         Debug.Log("Reloaded");
     } 

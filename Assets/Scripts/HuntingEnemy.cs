@@ -47,9 +47,8 @@ public class HuntingEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
-    public float BaseHealth = 5;
-    internal float health = 5;
-    private EnemyStatus _enemyStatus;
+    public float BaseHealth;
+    internal float health;
 
     private GameManager _gameManager;
 
@@ -57,8 +56,6 @@ public class HuntingEnemy : MonoBehaviour
     {
         target = GameObject.Find("Player");
         myNavMeshAgent = GetComponent<NavMeshAgent>();
-        _enemyStatus = GetComponent<EnemyStatus>();
-        _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
     }
 
     void Start()
@@ -298,7 +295,6 @@ public class HuntingEnemy : MonoBehaviour
 
         Debug.Log("Damaged for " + damage);
         health -= damage;
-        _enemyStatus.SetEnemyHealth(Mathf.CeilToInt(health));
 
         if (health <= 0)
         {

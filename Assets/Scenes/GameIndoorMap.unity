@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -204,6 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 1973474898}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: ammobar
+      value: 
+      objectReference: {fileID: 856411704}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 276349240}
@@ -257,6 +262,12 @@ PrefabInstance:
       propertyPath: EnemySpawnPoints.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: EnemyBlueprints.Array.data[0]
+      value: 
+      objectReference: {fileID: 3431540443557416460, guid: 5e186f2a922c54110985a6d11b1ba807,
+        type: 3}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
       propertyPath: EnemySpawnPoints.Array.data[0]
@@ -549,6 +560,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4819003657396103364, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819003657396103364, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cc9048e0b890654fb4877b2923e3f3a, type: 3}
 --- !u!1 &615394464
@@ -644,6 +665,18 @@ Transform:
   m_Father: {fileID: 1492248066}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &856411704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7334480809422976519, guid: 9cc9048e0b890654fb4877b2923e3f3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 614737251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b303a9b5a34281b3de3abd8c30d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870001446
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +707,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -833,6 +866,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 824522774131382041, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2908824559003173693, guid: 3a8a84e762b5740e5b0389af897004ee,
         type: 3}
       propertyPath: m_RootOrder
@@ -899,6 +937,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2871148741277607037, guid: 5b6fd20392a2d1a4491fbad6c26ab475,
         type: 3}
+    - target: {fileID: 9222739574988376122, guid: 3a8a84e762b5740e5b0389af897004ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a8a84e762b5740e5b0389af897004ee, type: 3}
 --- !u!4 &1021659422 stripped
