@@ -100,7 +100,7 @@ public class HuntingEnemy : MonoBehaviour
             var targetDirection = targetPos - currentPosNoHeight;
             
             var angle = Vector3.Angle(transform.forward, targetDirection);
-            if (angle < 5f || runAndGun)
+            if (angle < 5f)
             {
                 _state = EnemyState.ATTACK;
             }
@@ -168,6 +168,14 @@ public class HuntingEnemy : MonoBehaviour
     {
         myNavMeshAgent.speed = chaseSpeed;
         if (_lastKnownPos.HasValue) myNavMeshAgent.SetDestination(_lastKnownPos.Value);
+        if (runAndGun)
+        {
+           if (Random.Range(0, 1) > 0.5)
+            {
+                //Attack(transform.position);
+                Debug.Log("Bang");
+            }
+        }
         if (myNavMeshAgent.remainingDistance < 1)
         {
             _lastKnownPos = null;

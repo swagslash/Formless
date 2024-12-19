@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: GoodValue
-      value: +5
+      value: +20%
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
@@ -102,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}
       propertyPath: MagazineSizeModifier
-      value: 5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9076355960999372312, guid: 2634ad3cb6832f64fa7544cd8d8cb3e6,
         type: 3}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,14 +264,109 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: ItemBlueprints.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: EnemySpawnPoints.Array.size
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
+      propertyPath: ItemBlueprints.Array.data[0]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 237a955b79ee243a9a9b7ebb7a7ce433,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[1]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 0df094be80bd74843a864fda3982950c,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[2]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: c62bd02678af49549885ffdfcc86f1e8,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[3]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 76dea8fe75ea942c097de70e3c57be48,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[4]
+      value: 
+      objectReference: {fileID: 5136298676060333130, guid: 2c07f90f9643875449aebeb556829793,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[5]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 5d9e19e64f84e434e9d0c3090263380d,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[6]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: dd6d94e031d621e4aa114827cc937777,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[7]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
       propertyPath: EnemyBlueprints.Array.data[0]
       value: 
       objectReference: {fileID: 3431540443557416460, guid: 5e186f2a922c54110985a6d11b1ba807,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[12]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 237a955b79ee243a9a9b7ebb7a7ce433,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[13]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: c62bd02678af49549885ffdfcc86f1e8,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[14]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 76dea8fe75ea942c097de70e3c57be48,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[15]
+      value: 
+      objectReference: {fileID: 5136298676060333130, guid: 2c07f90f9643875449aebeb556829793,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[16]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 5d9e19e64f84e434e9d0c3090263380d,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[17]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: dd6d94e031d621e4aa114827cc937777,
+        type: 3}
+    - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
+        type: 3}
+      propertyPath: ItemBlueprints.Array.data[18]
+      value: 
+      objectReference: {fileID: 5510928903637969140, guid: 94e231d1c8a5d419090cc5a87ff5f335,
         type: 3}
     - target: {fileID: 5389219193714899176, guid: 76057bbd4f607ba45b0f70925ca9c04d,
         type: 3}
